@@ -1,3 +1,5 @@
+// Still no include guards :(
+
 void Swap(char** ptr1, char** ptr2);
 
 bool StdCompare(char* first_line, char* second_line);
