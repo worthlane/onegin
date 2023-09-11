@@ -4,7 +4,9 @@
 #include "sorter.h"
 #include "getoutinfo.h"
 
-void Swap(char** ptr1, char** ptr2)
+static inline void Swap(char** ptr1, char** ptr2);
+
+static inline void Swap(char** ptr1, char** ptr2)
 {
     char* temp = *ptr1;
                  *ptr1 = *ptr2;
@@ -28,11 +30,11 @@ bool StdCompare(char* first_line, char* second_line)
     return true;
 }
 
-void StdSort(char** lines_pointers, int line_amount)
+void StdSort(char** lines_pointers, size_t line_amount)
 {
-    for (int line1 = 0; line1 < line_amount - 1; line1++)
+    for (int line1 = 0; line1 < line_amount; line1++)
     {
-        for (int line2 = line1 + 1; line2 < line_amount - 1; line2++)
+        for (int line2 = line1 + 1; line2 < line_amount; line2++)
         {
             if(!StdCompare(lines_pointers[line1],    lines_pointers[line2]))
                     Swap(&(lines_pointers[line1]), &(lines_pointers[line2]));

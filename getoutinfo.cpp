@@ -3,14 +3,12 @@
 
 #include "getoutinfo.h"
 
-
-
-bool ReadFile(char* text, int* line_amount)
+bool ReadFile(char* text, size_t* line_amount)
 {
     assert(text);
     assert(line_amount);
 
-    FILE* fp = fopen(file_name, "r");
+    FILE* fp = fopen(FILE_NAME, "r");
 
     if (fp == NULL)
         return false;
@@ -31,34 +29,32 @@ bool ReadFile(char* text, int* line_amount)
     return true;
 }
 
-bool CreatePtrArray(char** lines_pointers, char* text)
+void CreatePtrArray(char** lines_pointers, const char* text, const size_t text_len)
 {
     assert(text);
     assert(lines_pointers);
 
-    int line = 1;
+    size_t line = 1;
 
-    for (int i = 0; i < text_len + 10; i++)
+    for (int i = 0; i < text_len; i++)
     {
         if (text[i] == '\n')
-            lines_pointers[line++] = text + i + 1;
+            lines_pointers[line++] = (char* ) text + i + 1;
     }
-
-    return true;
 }
 
 
-void PrintText(char** lines_pointers, int line_amount)
+void PrintText(const char** lines_pointers, const size_t line_amount)
 {
     assert(lines_pointers);
 
-    for (int line = 0; line < line_amount - 1; line++)
+    for (size_t line = 0; line < line_amount; line++)
     {
         PrintLine(lines_pointers, line);
     }
 }
 
-void PrintLine(char** lines_pointers, int line)
+void PrintLine(const char** lines_pointers, const size_t line)
 {
     for (int i = 0; lines_pointers[line][i] != '\n'; i++)
     {

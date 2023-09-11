@@ -1,12 +1,13 @@
-#include "stdio.h"
+#ifndef __GETOUTINFO_H
+#define __GETOUTINFO_H
 
-static const char* file_name = "input.txt";
-static const int text_len = 1000;
+static const char* FILE_NAME = "input.txt";
 
-bool ReadFile(char* text, int* line_amount);
+bool ReadFile(char* text, size_t* line_amount);
 
-bool CreatePtrArray(char** lines_pointers, char* text);
+void CreatePtrArray(char** lines_pointers, const char* text, const size_t text_len);
 
-void PrintText(char** lines_pointers, int line_amount);
+void PrintText(const char** lines_pointers, const size_t line_amount);
+void PrintLine(const char** lines_pointers, const size_t line);
 
-void PrintLine(char** lines_pointers, int line);
+#endif
