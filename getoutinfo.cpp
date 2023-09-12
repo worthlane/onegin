@@ -1,46 +1,74 @@
-#include "stdio.h"
-#include "assert.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <sys/stat.h>
 
 #include "getoutinfo.h"
 
-bool ReadFile(char* text, size_t* line_amount)
+char* CreateTextArray(size_t* line_amount, off_t* text_len)
 {
-    assert(text);
     assert(line_amount);
+    assert(text_len);
 
-    FILE* fp = fopen(FILE_NAME, "r");
+    FILE* fp = fopen(FILE_NAME, "rb");
 
     if (fp == NULL)
-        return false;
+    {
+        perror("Failed to open file");
+        printf("Input file: \"%s\"\n", FILE_NAME);
+        return NULL;
+    }
 
-    int ch = fgetc(fp);
+    *text_len = CountFileLength(FILE_NAME);
+
+    char* buf = (char* ) calloc(*text_len + 1, sizeof(char));
+        // for confidence, that program will have enough memory
+
+    int ch = 0;
     int i = 0;
 
-    while (ch != EOF)
+    if (fread(buf, sizeof(char), *text_len, fp) != *text_len)
+        return NULL;
+
+    if (buf[*text_len]    != '\0')
+        buf[*text_len + 1] = '\0';
+
+    for (int i = 0; i < *text_len; i++)
     {
-        text[i++] = ch;
-        if (ch == '\n')
+        if (buf[i] == '\n')
+        {
+            buf[i] = '\0';
             (*line_amount)++;
-        ch = fgetc(fp);
+        }
     }
 
     fclose(fp);
 
-    return true;
+    return buf;
 }
 
-void CreatePtrArray(char** lines_pointers, const char* text, const size_t text_len)
+char** CreatePtrArray(char* buf, const size_t line_amount, const off_t text_len)
 {
-    assert(text);
-    assert(lines_pointers);
+    assert(buf);
+
+    char** lines_pointers = (char** ) calloc(line_amount, sizeof(char*));
+
+    if (lines_pointers ==  NULL)
+        return NULL;
+
+    lines_pointers[0] = (char* ) buf;
 
     size_t line = 1;
 
-    for (int i = 0; i < text_len; i++)
+    for (off_t i = 0; i < text_len; i++)
     {
-        if (text[i] == '\n')
-            lines_pointers[line++] = (char* ) text + i + 1;
+        if (buf[i] == '\0')
+        {
+            lines_pointers[line++] = buf + i + 1;
+        }
     }
+
+    return lines_pointers;
 }
 
 
@@ -56,10 +84,20 @@ void PrintText(const char** lines_pointers, const size_t line_amount)
 
 void PrintLine(const char** lines_pointers, const size_t line)
 {
-    for (int i = 0; lines_pointers[line][i] != '\n'; i++)
+    for (int i = 0; lines_pointers[line][i] != '\0'; i++)
     {
         putchar(lines_pointers[line][i]);
     }
 
     putchar('\n');
+}
+
+off_t CountFileLength(const char* file_name)
+{
+    assert(file_name);
+
+    struct stat buf;
+    stat(file_name, &buf);
+
+    return buf.st_size;
 }
