@@ -5,7 +5,7 @@
 
 #include "getoutinfo.h"
 
-char* CreateTextArray(size_t* line_amount, off_t* text_len)
+char* CreateTextBuf(size_t* line_amount, off_t* text_len)
 {
     assert(line_amount);
     assert(text_len);
@@ -23,9 +23,6 @@ char* CreateTextArray(size_t* line_amount, off_t* text_len)
 
     char* buf = (char* ) calloc(*text_len + 1, sizeof(char));
         // for confidence, that program will have enough memory
-
-    int ch = 0;
-    int i = 0;
 
     if (fread(buf, sizeof(char), *text_len, fp) != *text_len)
         return NULL;
@@ -47,7 +44,9 @@ char* CreateTextArray(size_t* line_amount, off_t* text_len)
     return buf;
 }
 
-char** CreatePtrArray(char* buf, const size_t line_amount, const off_t text_len)
+//-------------------------------------------------------------------------------------------
+
+char** CreateLinePtrsArray(char* buf, const size_t line_amount, const off_t text_len)
 {
     assert(buf);
 
@@ -71,6 +70,7 @@ char** CreatePtrArray(char* buf, const size_t line_amount, const off_t text_len)
     return lines_pointers;
 }
 
+//-------------------------------------------------------------------------------------------
 
 void PrintText(const char** lines_pointers, const size_t line_amount)
 {
@@ -82,6 +82,8 @@ void PrintText(const char** lines_pointers, const size_t line_amount)
     }
 }
 
+//-------------------------------------------------------------------------------------------
+
 void PrintLine(const char** lines_pointers, const size_t line)
 {
     for (int i = 0; lines_pointers[line][i] != '\0'; i++)
@@ -91,6 +93,8 @@ void PrintLine(const char** lines_pointers, const size_t line)
 
     putchar('\n');
 }
+
+//-------------------------------------------------------------------------------------------
 
 off_t CountFileLength(const char* file_name)
 {

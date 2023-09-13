@@ -11,12 +11,12 @@ int main()
     size_t line_amount = 0;
     off_t text_len    = 0;
 
-    char* buf = CreateTextArray(&line_amount, &text_len);
+    char* buf = CreateTextBuf(&line_amount, &text_len);
 
     if (buf == NULL)
         return (int) ERRORS::READ_FILE;
 
-    char** lines_pointers = CreatePtrArray(buf, line_amount, text_len);
+    char** lines_pointers = CreateLinePtrsArray(buf, line_amount, text_len);
 
     if (lines_pointers == NULL)
         return (int) ERRORS::ALLOCATE_MEMORY;
@@ -25,7 +25,7 @@ int main()
 
     PrintText((const char**) lines_pointers, line_amount);
 
-    DestructPtrArray(lines_pointers);
-    DestructTextArray(buf);
+    DestructLinePtrsArray(lines_pointers);
+    DestructTextBuf(buf);
 }
 

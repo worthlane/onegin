@@ -73,36 +73,49 @@ $(function() {
   <div class="headertitle"><div class="title">getoutinfo.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __GETOUTINFO_H</span></div>
+<a href="getoutinfo_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __GETOUTINFO_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __GETOUTINFO_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* FILE_NAME = <span class="stringliteral">&quot;input.txt&quot;</span>;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>off_t CountFileLength(<span class="keyword">const</span> <span class="keywordtype">char</span>* file_name);</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">char</span>* CreateTextArray(<span class="keywordtype">size_t</span>* line_amount, off_t* text_len);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* FILE_NAME = <span class="stringliteral">&quot;input.txt&quot;</span>; </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keywordtype">char</span>** CreatePtrArray(<span class="keyword">const</span> <span class="keywordtype">char</span>* text, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line_amount, <span class="keyword">const</span> off_t text_len);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keywordtype">void</span> PrintText(<span class="keyword">const</span> <span class="keywordtype">char</span>** lines_pointers, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line_amount);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keywordtype">void</span> PrintLine(<span class="keyword">const</span> <span class="keywordtype">char</span>** lines_pointers, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">inline</span> <span class="keywordtype">void</span> DestructTextArray(<span class="keywordtype">char</span>* text)</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    free(text);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">inline</span> <span class="keywordtype">void</span> DestructPtrArray(<span class="keywordtype">char</span>** lines_pointers)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    free(lines_pointers);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>off_t <a class="code hl_function" href="getoutinfo_8h.html#a1fdad742635c38792e2d10129fba0aee">CountFileLength</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* file_name);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">char</span>* <a class="code hl_function" href="getoutinfo_8h.html#a92bbc82b6f58fc50be155e0a9c5d091f">CreateTextBuf</a>(<span class="keywordtype">size_t</span>* line_amount, off_t* text_len);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keywordtype">char</span>** <a class="code hl_function" href="getoutinfo_8h.html#a3a0dc7e81b7392b1ff4dadbad6fc7249">CreateLinePtrsArray</a>(<span class="keywordtype">char</span>* buf, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line_amount, <span class="keyword">const</span> off_t text_len);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">void</span> <a class="code hl_function" href="getoutinfo_8h.html#a9d99b5ca6313bf2e40188d5db5cc1934">PrintText</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>** lines_pointers, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line_amount);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keywordtype">void</span> <a class="code hl_function" href="getoutinfo_8h.html#a7cfab985519cbc8ba66159046c7a9a44">PrintLine</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>** lines_pointers, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="getoutinfo_8h.html#a482ad1f97f4ac42aaa3f53f10dd1c45d">   63</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="getoutinfo_8h.html#a482ad1f97f4ac42aaa3f53f10dd1c45d">DestructTextBuf</a>(<span class="keywordtype">char</span>* buf)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    free(buf);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="getoutinfo_8h.html#a952af2f9c9a2b73ac6f451cc2850c65d">   73</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="getoutinfo_8h.html#a952af2f9c9a2b73ac6f451cc2850c65d">DestructLinePtrsArray</a>(<span class="keywordtype">char</span>** lines_pointers)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    free(lines_pointers);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="agetoutinfo_8h_html_a1fdad742635c38792e2d10129fba0aee"><div class="ttname"><a href="getoutinfo_8h.html#a1fdad742635c38792e2d10129fba0aee">CountFileLength</a></div><div class="ttdeci">off_t CountFileLength(const char *file_name)</div><div class="ttdoc">open file name</div><div class="ttdef"><b>Definition</b> getoutinfo.cpp:95</div></div>
+<div class="ttc" id="agetoutinfo_8h_html_a3a0dc7e81b7392b1ff4dadbad6fc7249"><div class="ttname"><a href="getoutinfo_8h.html#a3a0dc7e81b7392b1ff4dadbad6fc7249">CreateLinePtrsArray</a></div><div class="ttdeci">char ** CreateLinePtrsArray(char *buf, const size_t line_amount, const off_t text_len)</div><div class="ttdoc">Allocates memory for array, that contains pointers on each new line start (in text buffer)</div><div class="ttdef"><b>Definition</b> getoutinfo.cpp:50</div></div>
+<div class="ttc" id="agetoutinfo_8h_html_a482ad1f97f4ac42aaa3f53f10dd1c45d"><div class="ttname"><a href="getoutinfo_8h.html#a482ad1f97f4ac42aaa3f53f10dd1c45d">DestructTextBuf</a></div><div class="ttdeci">void DestructTextBuf(char *buf)</div><div class="ttdoc">Destructs text buffer and clears memory.</div><div class="ttdef"><b>Definition</b> getoutinfo.h:63</div></div>
+<div class="ttc" id="agetoutinfo_8h_html_a7cfab985519cbc8ba66159046c7a9a44"><div class="ttname"><a href="getoutinfo_8h.html#a7cfab985519cbc8ba66159046c7a9a44">PrintLine</a></div><div class="ttdeci">void PrintLine(const char **lines_pointers, const size_t line)</div><div class="ttdoc">Prints one line from buffer.</div><div class="ttdef"><b>Definition</b> getoutinfo.cpp:85</div></div>
+<div class="ttc" id="agetoutinfo_8h_html_a92bbc82b6f58fc50be155e0a9c5d091f"><div class="ttname"><a href="getoutinfo_8h.html#a92bbc82b6f58fc50be155e0a9c5d091f">CreateTextBuf</a></div><div class="ttdeci">char * CreateTextBuf(size_t *line_amount, off_t *text_len)</div><div class="ttdoc">Reads text from file, allocates memory for text buffer,.</div><div class="ttdef"><b>Definition</b> getoutinfo.cpp:8</div></div>
+<div class="ttc" id="agetoutinfo_8h_html_a952af2f9c9a2b73ac6f451cc2850c65d"><div class="ttname"><a href="getoutinfo_8h.html#a952af2f9c9a2b73ac6f451cc2850c65d">DestructLinePtrsArray</a></div><div class="ttdeci">void DestructLinePtrsArray(char **lines_pointers)</div><div class="ttdoc">Destructs array of line pointers and clears memory.</div><div class="ttdef"><b>Definition</b> getoutinfo.h:73</div></div>
+<div class="ttc" id="agetoutinfo_8h_html_a9d99b5ca6313bf2e40188d5db5cc1934"><div class="ttname"><a href="getoutinfo_8h.html#a9d99b5ca6313bf2e40188d5db5cc1934">PrintText</a></div><div class="ttdeci">void PrintText(const char **lines_pointers, const size_t line_amount)</div><div class="ttdoc">Prints text from buffer.</div><div class="ttdef"><b>Definition</b> getoutinfo.cpp:75</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

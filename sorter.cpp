@@ -5,7 +5,7 @@
 #include "sorter.h"
 #include "getoutinfo.h"
 
-static inline void Swap(char** ptr1, char** ptr2);
+#define DEBUG
 
 static inline void Swap(char** ptr1, char** ptr2)
 {
@@ -13,6 +13,8 @@ static inline void Swap(char** ptr1, char** ptr2)
     *ptr1      = *ptr2;
     *ptr2      = temp;
 }
+
+//-------------------------------------------------------------------------------------------
 
 int StdCompare(char* first_line, char* second_line)
 {
@@ -31,7 +33,9 @@ int StdCompare(char* first_line, char* second_line)
     return EQUAL;
 }
 
-void StdSort(char** lines_pointers, size_t line_amount)
+//-------------------------------------------------------------------------------------------
+
+void InsertionSort(char** lines_pointers, size_t line_amount)
 {
     for (size_t line1 = 0; line1 < line_amount; line1++)
     {
@@ -43,16 +47,30 @@ void StdSort(char** lines_pointers, size_t line_amount)
     }
 }
 
+//-------------------------------------------------------------------------------------------
+
 void QSort(char** data, size_t left, size_t right)
 {
 	if (left < right)
 	{
-		size_t mid = Partition(data, left, right);
+        if (right - left == 1)
+		{
+			if (StdCompare(data[left], data[right]) != LESS)
+			{
+				Swap(&data[right], &data[left]);
+			}
+		}
+        else
+        {
+		    size_t mid = Partition(data, left, right);
 
-		QSort(data, left, mid);
-		QSort(data, mid + 1, right);
+		    QSort(data, left, mid);
+		    QSort(data, mid + 1, right);
+        }
 	}
 }
+
+//-------------------------------------------------------------------------------------------
 
 size_t Partition(char** data, size_t left, size_t right)
 {
@@ -63,12 +81,12 @@ size_t Partition(char** data, size_t left, size_t right)
 
     while (left_ptr <= right_ptr)
     {
-        while (StdCompare(data[left_ptr], mid) == LESS)
+        while (StdCompare(data[left_ptr], mid) == LESS && right_ptr > left_ptr)
         {
             left_ptr++;
         }
 
-        while (StdCompare(data[right_ptr], mid) == MORE)
+        while (StdCompare(data[right_ptr], mid) == MORE && right_ptr > left_ptr)
         {
             right_ptr--;
         }

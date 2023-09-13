@@ -73,16 +73,37 @@ $(function() {
   <div class="headertitle"><div class="title">sorter.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __SORTER_H</span></div>
+<a href="sorter_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __SORTER_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __SORTER_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keywordtype">bool</span> StdCompare(<span class="keywordtype">char</span>* first_line, <span class="keywordtype">char</span>* second_line);</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keywordtype">void</span> StdSort(<span class="keywordtype">char</span>** lines_pointers, <span class="keywordtype">size_t</span> line_amount);</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keywordtype">int</span> <a class="code hl_function" href="sorter_8h.html#a59696fcb0f6a0c88c4358cf76d6f5d62">StdCompare</a>(<span class="keywordtype">char</span>* first_line, <span class="keywordtype">char</span>* second_line);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> <a class="code hl_function" href="sorter_8h.html#aa60a2e2e4468130ffb238ba83e3f7600">InsertionSort</a>(<span class="keywordtype">char</span>** lines_pointers, <span class="keywordtype">size_t</span> line_amount);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> <a class="code hl_function" href="sorter_8h.html#a013c73f274c0b75d68e035cd7eafef19">QSort</a>(<span class="keywordtype">char</span>** data, <span class="keywordtype">size_t</span> left, <span class="keywordtype">size_t</span> right);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">size_t</span> <a class="code hl_function" href="sorter_8h.html#a7fc52a44554b57ce2003603e23760514">Partition</a>(<span class="keywordtype">char</span>** data, <span class="keywordtype">size_t</span> left, <span class="keywordtype">size_t</span> right);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/************************************************************/</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="sorter_8h.html#ace67d421b0a753740a12d3aedbea57c0">   51</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="sorter_8h.html#ace67d421b0a753740a12d3aedbea57c0">Comparison</a></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    LESS  = -1,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    EQUAL =  0,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    MORE  =  1</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="asorter_8h_html_a013c73f274c0b75d68e035cd7eafef19"><div class="ttname"><a href="sorter_8h.html#a013c73f274c0b75d68e035cd7eafef19">QSort</a></div><div class="ttdeci">void QSort(char **data, size_t left, size_t right)</div><div class="ttdoc">Runs quick sorting.</div><div class="ttdef"><b>Definition</b> sorter.cpp:48</div></div>
+<div class="ttc" id="asorter_8h_html_a59696fcb0f6a0c88c4358cf76d6f5d62"><div class="ttname"><a href="sorter_8h.html#a59696fcb0f6a0c88c4358cf76d6f5d62">StdCompare</a></div><div class="ttdeci">int StdCompare(char *first_line, char *second_line)</div><div class="ttdoc">Compares strings from their beginning (standart alphabet compare)</div><div class="ttdef"><b>Definition</b> sorter.cpp:19</div></div>
+<div class="ttc" id="asorter_8h_html_a7fc52a44554b57ce2003603e23760514"><div class="ttname"><a href="sorter_8h.html#a7fc52a44554b57ce2003603e23760514">Partition</a></div><div class="ttdeci">size_t Partition(char **data, size_t left, size_t right)</div><div class="ttdoc">Does partition for quick sort.</div><div class="ttdef"><b>Definition</b> sorter.cpp:69</div></div>
+<div class="ttc" id="asorter_8h_html_aa60a2e2e4468130ffb238ba83e3f7600"><div class="ttname"><a href="sorter_8h.html#aa60a2e2e4468130ffb238ba83e3f7600">InsertionSort</a></div><div class="ttdeci">void InsertionSort(char **lines_pointers, size_t line_amount)</div><div class="ttdoc">Runs insertion sorting.</div><div class="ttdef"><b>Definition</b> sorter.cpp:36</div></div>
+<div class="ttc" id="asorter_8h_html_ace67d421b0a753740a12d3aedbea57c0"><div class="ttname"><a href="sorter_8h.html#ace67d421b0a753740a12d3aedbea57c0">Comparison</a></div><div class="ttdeci">Comparison</div><div class="ttdoc">Enums result of comparing strings.</div><div class="ttdef"><b>Definition</b> sorter.h:52</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
