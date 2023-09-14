@@ -98,7 +98,7 @@ bool PrintText(const char** lines_pointers, const size_t line_amount)
 
 void PrintLine(const char** lines_pointers, const size_t line, FILE* fp)
 {
-    assert(fp);
+    assert(lines_pointers);
 
     for (int i = 0; lines_pointers[line][i] != '\0'; i++)
     {

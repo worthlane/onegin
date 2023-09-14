@@ -14,7 +14,7 @@ int main()
     if (error != (int) ERRORS::NOT)
         return error;
 
-    QSort(info.lines_ptrs, 0, info.line_amt - 1); // increasing one to prevent crossing array borders
+    QSort(info.lines_ptrs, sizeof(char*), 0, info.line_amt - 1); // increasing one to prevent crossing array borders
 
     if(!PrintText((const char**) info.lines_ptrs, info.line_amt))
         return (int) ERRORS::PRINT_DATA;

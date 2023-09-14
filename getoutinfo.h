@@ -8,7 +8,7 @@
 * \brief Contains info about functions, that get data and print it
 */
 
-static const char* INPUT_FILE  = "input.txt";  /// open file name
+static const char* INPUT_FILE  = "onegin.txt";  /// open file name
 static const char* OUTPUT_FILE = "output.txt"; /// open file name
 
 struct Storage
