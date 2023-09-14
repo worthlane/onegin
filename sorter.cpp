@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <strings.h>
+#include <assert.h>
 
 #include "sorter.h"
 #include "getoutinfo.h"
@@ -18,18 +19,32 @@ static inline void Swap(char** ptr1, char** ptr2)
 
 int StdCompare(char* first_line, char* second_line)
 {
-    for (int i = 0; first_line[i]  != '\0' &&
-                    second_line[i] != '\0'; i++)
+    int first_ptr  = 0;
+    int second_ptr = 0;
+
+    while (first_line[first_ptr] != '\0' && second_line[second_ptr] != '\0')
         {
-            int second = toupper(second_line[i]);
-            int first  = toupper(first_line[i]);
-            if (second == first)
-                continue;
-            else if (first < second)
-                return LESS;
-            else
-                return MORE;
+            if (isalpha(first_line[first_ptr]) && isalpha(second_line[second_ptr]))
+            {
+                int second = toupper(second_line[second_ptr++]);
+                int first  = toupper(first_line[first_ptr++]);
+                if (second == first)
+                    continue;
+                else if (first < second)
+                    return LESS;
+                else
+                    return MORE;
+            }
+            else if (!isalpha(first_line[first_ptr]))
+            {
+                first_ptr++;
+            }
+            else if (!isalpha(second_line[second_ptr]))
+            {
+                second_ptr++;
+            }
         }
+
     return EQUAL;
 }
 
@@ -49,8 +64,11 @@ void InsertionSort(char** lines_pointers, size_t line_amount)
 
 //-------------------------------------------------------------------------------------------
 
-void QSort(char** data, size_t left, size_t right)
+void QSort(char** data, size_t left, size_t right) // TODO const
 {
+    assert(data);
+    assert(left <= right);
+
 	if (left < right)
 	{
         if (right - left == 1)
@@ -74,6 +92,9 @@ void QSort(char** data, size_t left, size_t right)
 
 size_t Partition(char** data, size_t left, size_t right)
 {
+    assert(data);
+    assert(left <= right);
+
     char* mid = data[(left + right) / 2];
 
     size_t left_ptr  = left;

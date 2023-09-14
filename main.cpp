@@ -1,5 +1,5 @@
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "getoutinfo.h"
 #include "sorter.h"
@@ -7,25 +7,24 @@
 
 int main()
 {
+    struct Storage info = {};
 
-    size_t line_amount = 0;
-    off_t text_len    = 0;
+    int error = CreateTextStorage(&info);
 
-    char* buf = CreateTextBuf(&line_amount, &text_len);
+    if (error != (int) ERRORS::NOT)
+        return error;
 
-    if (buf == NULL)
-        return (int) ERRORS::READ_FILE;
+    QSort(info.lines_ptrs, 0, info.line_amt - 1); // increasing one to prevent crossing array borders
 
-    char** lines_pointers = CreateLinePtrsArray(buf, line_amount, text_len);
+    if(!PrintText((const char**) info.lines_ptrs, info.line_amt))
+        return (int) ERRORS::PRINT_DATA;
 
-    if (lines_pointers == NULL)
-        return (int) ERRORS::ALLOCATE_MEMORY;
+    DestructLinePtrsArray(info.lines_ptrs);
+    DestructTextBuf(info.buf);
 
-    QSort(lines_pointers, 0, line_amount - 1); // increasing one for prevent crossing array borders
+    /*char* string1 = "afkdsnjdbsdbs";
+    char* string2 = "8432dfkkfjdsjfoidgrkln\"";
 
-    PrintText((const char**) lines_pointers, line_amount);
-
-    DestructLinePtrsArray(lines_pointers);
-    DestructTextBuf(buf);
+    printf("%d", StdCompare(string1, string2));*/
 }
 

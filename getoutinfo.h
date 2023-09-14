@@ -8,7 +8,16 @@
 * \brief Contains info about functions, that get data and print it
 */
 
-static const char* FILE_NAME = "input.txt"; /// open file name
+static const char* INPUT_FILE  = "input.txt";  /// open file name
+static const char* OUTPUT_FILE = "output.txt"; /// open file name
+
+struct Storage
+{
+    size_t line_amt;
+    off_t text_len;
+    char* buf;
+    char** lines_ptrs;
+};
 
 /************************************************************//**
  * @brief counts amount of symbols in input file
@@ -21,31 +30,30 @@ off_t CountFileLength(const char* file_name);
 /************************************************************//**
  * @brief Reads text from file, allocates memory for text buffer,
  *
- * @param[in] line_amount amount of lines in file
- * @param[in] text_len amount of symbols in file
+ * @param[in] info structure with info about text buffer
  * @return char* pointer on text buffer
  * @return NULL if there was an error
  ************************************************************/
-char* CreateTextBuf(size_t* line_amount, off_t* text_len);
+char* CreateTextBuf(struct Storage* info);
 
 /************************************************************//**
  * @brief Allocates memory for array, that contains pointers on each new line start (in text buffer)
  *
- * @param[in] buf text buffer
- * @param[in] line_amount amount of lines in buffer
- * @param[in] text_len amount of symbols in buffer
+ * @param[in] info structure with info about text buffer
  * @return char** pointer on array of line pointers
  * @return NULL if there was an error
  ************************************************************/
-char** CreateLinePtrsArray(char* buf, const size_t line_amount, const off_t text_len);
+char** CreateLinePtrsArray(struct Storage* info);
 
 /************************************************************//**
  * @brief Prints text from buffer
  *
  * @param[in] lines_pointers array of each line pointers
  * @param[in] line_amount amount of lines in buffer
+ * @return true if data succesfully printed
+ * @return false if there was an error
  ************************************************************/
-void PrintText(const char** lines_pointers, const size_t line_amount);
+bool PrintText(const char** lines_pointers, const size_t line_amount);
 
 /************************************************************//**
  * @brief Prints one line from buffer
@@ -53,7 +61,7 @@ void PrintText(const char** lines_pointers, const size_t line_amount);
  * @param[in] lines_pointers array of each line pointers
  * @param[in] line number of line
  ************************************************************/
-void PrintLine(const char** lines_pointers, const size_t line);
+void PrintLine(const char** lines_pointers, const size_t line, FILE* fp);
 
 /************************************************************//**
  * @brief Destructs text buffer and clears memory
@@ -74,5 +82,7 @@ inline void DestructLinePtrsArray(char** lines_pointers)
 {
     free(lines_pointers);
 }
+
+int CreateTextStorage(struct Storage* info);
 
 #endif

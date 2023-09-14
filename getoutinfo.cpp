@@ -2,96 +2,110 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <sys/stat.h>
+#include <ctype.h>
 
 #include "getoutinfo.h"
+#include "errors.h"
 
-char* CreateTextBuf(size_t* line_amount, off_t* text_len)
+char* CreateTextBuf(struct Storage* info)
 {
-    assert(line_amount);
-    assert(text_len);
+    assert(info);
 
-    FILE* fp = fopen(FILE_NAME, "rb");
+    FILE* fp = fopen(INPUT_FILE, "rb");
 
     if (fp == NULL)
     {
         perror("Failed to open file");
-        printf("Input file: \"%s\"\n", FILE_NAME);
+        printf("Input file: \"%s\"\n", INPUT_FILE);
         return NULL;
     }
 
-    *text_len = CountFileLength(FILE_NAME);
+    info->text_len = CountFileLength(INPUT_FILE);
 
-    char* buf = (char* ) calloc(*text_len + 1, sizeof(char));
-        // for confidence, that program will have enough memory
+    info->buf = (char* ) calloc(info->text_len + 1, sizeof(char));
+    // *text_len + 1 for confidence, that program will have enough memory
 
-    if (fread(buf, sizeof(char), *text_len, fp) != *text_len)
+    if (fread(info->buf, sizeof(char), info->text_len, fp) != info->text_len)
         return NULL;
 
-    if (buf[*text_len]    != '\0')
-        buf[*text_len + 1] = '\0';
+    if (info->buf[info->text_len]    != '\0')
+        info->buf[info->text_len + 1] = '\0';
 
-    for (int i = 0; i < *text_len; i++)
+    for (int i = 0; i < info->text_len; i++)
     {
-        if (buf[i] == '\n')
+        if (info->buf[i] == '\n')
         {
-            buf[i] = '\0';
-            (*line_amount)++;
+            info->buf[i] = '\0';
+            info->line_amt++;
         }
     }
 
     fclose(fp);
 
-    return buf;
+    return info->buf;
 }
 
 //-------------------------------------------------------------------------------------------
 
-char** CreateLinePtrsArray(char* buf, const size_t line_amount, const off_t text_len)
+char** CreateLinePtrsArray(struct Storage* info)
 {
-    assert(buf);
+    assert(info);
 
-    char** lines_pointers = (char** ) calloc(line_amount, sizeof(char*));
+    info->lines_ptrs = (char** ) calloc(info->line_amt, sizeof(char*));
 
-    if (lines_pointers ==  NULL)
+    if (info->lines_ptrs ==  NULL)
         return NULL;
 
-    lines_pointers[0] = (char* ) buf;
+    info->lines_ptrs[0] = (char* ) info->buf;
 
     size_t line = 1;
 
-    for (off_t i = 0; i < text_len; i++)
+    for (off_t i = 0; i < info->text_len; i++)
     {
-        if (buf[i] == '\0')
+        if (info->buf[i] == '\0')
         {
-            lines_pointers[line++] = buf + i + 1;
+            info->lines_ptrs[line++] = info->buf + i + 1;
         }
     }
 
-    return lines_pointers;
+    return info->lines_ptrs;
 }
 
 //-------------------------------------------------------------------------------------------
 
-void PrintText(const char** lines_pointers, const size_t line_amount)
+bool PrintText(const char** lines_pointers, const size_t line_amount)
 {
     assert(lines_pointers);
 
+    FILE* fp = fopen(OUTPUT_FILE, "wb");
+
+    if (fp == NULL)
+    {
+        perror("Failed to open file");
+        printf("Ouptut file: \"%s\"\n", OUTPUT_FILE);
+        return false;
+    }
+
     for (size_t line = 0; line < line_amount; line++)
     {
-        PrintLine(lines_pointers, line);
+        PrintLine(lines_pointers, line, fp);
     }
+
+    return true;
 }
 
 //-------------------------------------------------------------------------------------------
 
-void PrintLine(const char** lines_pointers, const size_t line)
+void PrintLine(const char** lines_pointers, const size_t line, FILE* fp)
 {
+    assert(fp);
+
     for (int i = 0; lines_pointers[line][i] != '\0'; i++)
     {
-        putchar(lines_pointers[line][i]);
+        fputc(lines_pointers[line][i], fp);
     }
 
-    putchar('\n');
+    fputc('\n', fp);
 }
 
 //-------------------------------------------------------------------------------------------
@@ -104,4 +118,22 @@ off_t CountFileLength(const char* file_name)
     stat(file_name, &buf);
 
     return buf.st_size;
+}
+
+
+
+int CreateTextStorage(struct Storage* info)
+{
+
+    info->buf = CreateTextBuf(info);
+
+    if (info->buf == NULL)
+        return (int) ERRORS::READ_FILE;
+
+    info->lines_ptrs = CreateLinePtrsArray(info);
+
+    if (info->lines_ptrs == NULL)
+        return (int) ERRORS::ALLOCATE_MEMORY;
+
+    return (int) ERRORS::NOT;
 }
