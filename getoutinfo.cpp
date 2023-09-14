@@ -73,11 +73,11 @@ char** CreateLinePtrsArray(struct Storage* info)
 
 //-------------------------------------------------------------------------------------------
 
-bool PrintText(const char** lines_pointers, const size_t line_amount)
+bool PrintText(const char** lines_pointers, const size_t line_amount, const char* header)
 {
     assert(lines_pointers);
 
-    FILE* fp = fopen(OUTPUT_FILE, "wb");
+    FILE* fp = fopen(OUTPUT_FILE, "ab");
 
     if (fp == NULL)
     {
@@ -86,10 +86,17 @@ bool PrintText(const char** lines_pointers, const size_t line_amount)
         return false;
     }
 
+    if (header != NULL)
+        fprintf(fp, "%s\n\n", header);
+
     for (size_t line = 0; line < line_amount; line++)
     {
         PrintLine(lines_pointers, line, fp);
     }
+
+    fprintf(fp, "\n----------------------------------------------------------------------------\n\n");
+
+    fclose(fp);
 
     return true;
 }
@@ -120,7 +127,7 @@ off_t CountFileLength(const char* file_name)
     return buf.st_size;
 }
 
-
+//-------------------------------------------------------------------------------------------
 
 int CreateTextStorage(struct Storage* info)
 {
@@ -136,4 +143,59 @@ int CreateTextStorage(struct Storage* info)
         return (int) ERRORS::ALLOCATE_MEMORY;
 
     return (int) ERRORS::NOT;
+}
+
+//-------------------------------------------------------------------------------------------
+
+bool ClearFile(const char* FILE_NAME)
+{
+    FILE* fp = fopen(FILE_NAME, "wb");
+
+    if (fp == NULL)
+    {
+        perror("Failed to open file");
+        printf("File: \"%s\"\n", FILE_NAME);
+        return false;
+    }
+
+    fclose(fp);
+
+    return true;
+}
+
+//-------------------------------------------------------------------------------------------
+
+bool PrintBuf(const char* buf, const size_t text_len, const char* header)
+{
+    assert(buf);
+
+    FILE* fp = fopen(OUTPUT_FILE, "ab");
+
+    if (fp == NULL)
+    {
+        perror("Failed to open file");
+        printf("Ouptut file: \"%s\"\n", OUTPUT_FILE);
+        return false;
+    }
+
+    if (header != NULL)
+        fprintf(fp, "%s\n\n", header);
+
+    // fwrite(buf, sizeof(char), text_len, fp); // not working cuz of nulls
+
+    for (size_t i = 0; i < text_len; i++)
+    {
+        int ch = buf[i];
+
+        if (buf[i] == 0)
+            ch = '\n';
+
+        fputc(ch, fp);
+    }
+
+    fprintf(fp, "\n----------------------------------------------------------------------------\n");
+
+    fclose(fp);
+
+    return true;
 }

@@ -45,15 +45,7 @@ char* CreateTextBuf(struct Storage* info);
  ************************************************************/
 char** CreateLinePtrsArray(struct Storage* info);
 
-/************************************************************//**
- * @brief Prints text from buffer
- *
- * @param[in] lines_pointers array of each line pointers
- * @param[in] line_amount amount of lines in buffer
- * @return true if data succesfully printed
- * @return false if there was an error
- ************************************************************/
-bool PrintText(const char** lines_pointers, const size_t line_amount);
+bool PrintText(const char** lines_pointers, const size_t line_amount, const char* header);
 
 /************************************************************//**
  * @brief Prints one line from buffer
@@ -84,5 +76,15 @@ inline void DestructLinePtrsArray(char** lines_pointers)
 }
 
 int CreateTextStorage(struct Storage* info);
+
+bool ClearFile(const char* FILE_NAME);
+
+bool PrintBuf(const char* buf, const size_t text_len, const char* header);
+
+inline void DestructTextStorage(struct Storage* info)
+{
+    DestructLinePtrsArray(info->lines_ptrs);
+    DestructTextBuf(info->buf);
+}
 
 #endif

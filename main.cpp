@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
 
 #include "getoutinfo.h"
 #include "sorter.h"
@@ -14,17 +15,42 @@ int main()
     if (error != (int) ERRORS::NOT)
         return error;
 
-    QSort(info.lines_ptrs, sizeof(char*), 0, info.line_amt - 1); // increasing one to prevent crossing array borders
+    ClearFile(OUTPUT_FILE);
 
-    if(!PrintText((const char**) info.lines_ptrs, info.line_amt))
+    // -------- ALPHABET SORTING FROM BEGINNING --------
+
+    qsort(info.lines_ptrs, info.line_amt - 1, sizeof(char*), &StdCompare);
+    // increasing one to prevent crossing array borders
+
+    if(!PrintText((const char**) info.lines_ptrs, info.line_amt,
+                   "ALPHABET SORTING FROM BEGINNING"))
         return (int) ERRORS::PRINT_DATA;
 
-    DestructLinePtrsArray(info.lines_ptrs);
-    DestructTextBuf(info.buf);
+    // -------------------------------------------------
 
-    /*char* string1 = "afkdsnjdbsdbs";
-    char* string2 = "8432dfkkfjdsjfoidgrkln\"";
 
-    printf("%d", StdCompare(string1, string2));*/
+
+    // ---------- ALPHABET SORTING FROM END ------------
+
+    QSort(info.lines_ptrs, sizeof(char*), 0,
+          info.line_amt - 1, &ReverseCompare);
+    // increasing one to prevent crossing array borders
+
+    if(!PrintText((const char**) info.lines_ptrs, info.line_amt,
+                   "ALPHABET SORTING FROM END"))
+        return (int) ERRORS::PRINT_DATA;
+
+    // -------------------------------------------------
+
+
+
+    // ------------ PRINT ORIGINAL VERSION -------------
+
+    if(!PrintBuf(info.buf, info.text_len, "ORIGINAL VERSION"))
+        return (int) ERRORS::PRINT_DATA;
+
+    // -------------------------------------------------
+
+    DestructTextStorage(&info);
 }
 

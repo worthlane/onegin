@@ -10,11 +10,13 @@
 
 int StdCompare(const void* first_line, const void* second_line);
 
-void InsertionSort(char** lines_pointers, size_t line_amount);
+int ReverseCompare(const void* first_line, const void* second_line);
 
-void QSort(void* data, const size_t size, const size_t left, const size_t right);
+void QSort(void* data, const size_t size, const size_t left, const size_t right,
+           int (*Compare) (const void *, const void *));
 
-size_t Partition(void* data, const size_t size, const size_t left, const size_t right);
+size_t Partition(void* data, const size_t size, const size_t left, const size_t right,
+                 int (*Compare) (const void *, const void *));
 
 /************************************************************//**
  * @brief Enums result of comparing strings
