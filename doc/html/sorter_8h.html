@@ -94,18 +94,21 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a59696fcb0f6a0c88c4358cf76d6f5d62"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a59696fcb0f6a0c88c4358cf76d6f5d62">StdCompare</a> (char *first_line, char *second_line)</td></tr>
-<tr class="memdesc:a59696fcb0f6a0c88c4358cf76d6f5d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares strings from their beginning (standart alphabet compare)  <br /></td></tr>
-<tr class="separator:a59696fcb0f6a0c88c4358cf76d6f5d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa60a2e2e4468130ffb238ba83e3f7600"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#aa60a2e2e4468130ffb238ba83e3f7600">InsertionSort</a> (char **lines_pointers, size_t line_amount)</td></tr>
-<tr class="memdesc:aa60a2e2e4468130ffb238ba83e3f7600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs insertion sorting.  <br /></td></tr>
-<tr class="separator:aa60a2e2e4468130ffb238ba83e3f7600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a013c73f274c0b75d68e035cd7eafef19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a013c73f274c0b75d68e035cd7eafef19">QSort</a> (char **data, size_t left, size_t right)</td></tr>
-<tr class="memdesc:a013c73f274c0b75d68e035cd7eafef19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs quick sorting.  <br /></td></tr>
-<tr class="separator:a013c73f274c0b75d68e035cd7eafef19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fc52a44554b57ce2003603e23760514"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a7fc52a44554b57ce2003603e23760514">Partition</a> (char **data, size_t left, size_t right)</td></tr>
-<tr class="memdesc:a7fc52a44554b57ce2003603e23760514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does partition for quick sort.  <br /></td></tr>
-<tr class="separator:a7fc52a44554b57ce2003603e23760514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91f554cf3bc4cd400ce7dce8463942e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#ad91f554cf3bc4cd400ce7dce8463942e">Swap</a> (void *ptr1, void *ptr2, size_t size)</td></tr>
+<tr class="memdesc:ad91f554cf3bc4cd400ce7dce8463942e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps two elements in memory.  <br /></td></tr>
+<tr class="separator:ad91f554cf3bc4cd400ce7dce8463942e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cccb4403aa64129cf522fd2a1b40ff2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a8cccb4403aa64129cf522fd2a1b40ff2">StdCompare</a> (const void *first_line, const void *second_line)</td></tr>
+<tr class="memdesc:a8cccb4403aa64129cf522fd2a1b40ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two strings from beginning.  <br /></td></tr>
+<tr class="separator:a8cccb4403aa64129cf522fd2a1b40ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7eeba3d0cb775c757932868a2b02650"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#ad7eeba3d0cb775c757932868a2b02650">ReverseCompare</a> (const void *first_line, const void *second_line)</td></tr>
+<tr class="memdesc:ad7eeba3d0cb775c757932868a2b02650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two strings from end.  <br /></td></tr>
+<tr class="separator:ad7eeba3d0cb775c757932868a2b02650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cddf755eac7aea5a945a2d2d8e0ba83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a3cddf755eac7aea5a945a2d2d8e0ba83">QSort</a> (const void *data, const size_t size, const size_t left, const size_t right, int(*Compare)(const void *, const void *))</td></tr>
+<tr class="memdesc:a3cddf755eac7aea5a945a2d2d8e0ba83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick sorting.  <br /></td></tr>
+<tr class="separator:a3cddf755eac7aea5a945a2d2d8e0ba83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e8bb133b8587655ab99899faf8b0c7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a17e8bb133b8587655ab99899faf8b0c7">Partition</a> (const void *data, const size_t size, const size_t left, const size_t right, int(*Compare)(const void *, const void *))</td></tr>
+<tr class="memdesc:a17e8bb133b8587655ab99899faf8b0c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition in quick sorting.  <br /></td></tr>
+<tr class="separator:a17e8bb133b8587655ab99899faf8b0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>contains comparing functions </p>
@@ -127,45 +130,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aa60a2e2e4468130ffb238ba83e3f7600" name="aa60a2e2e4468130ffb238ba83e3f7600"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa60a2e2e4468130ffb238ba83e3f7600">&#9670;&#160;</a></span>InsertionSort()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void InsertionSort </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>lines_pointers</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>line_amount</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Runs insertion sorting. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">lines_pointers</td><td>array of each line pointers </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">line_amount</td><td>amount of lines in buffer </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a7fc52a44554b57ce2003603e23760514" name="a7fc52a44554b57ce2003603e23760514"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fc52a44554b57ce2003603e23760514">&#9670;&#160;</a></span>Partition()</h2>
+<a id="a17e8bb133b8587655ab99899faf8b0c7" name="a17e8bb133b8587655ab99899faf8b0c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17e8bb133b8587655ab99899faf8b0c7">&#9670;&#160;</a></span>Partition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,20 +139,32 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">size_t Partition </td>
           <td>(</td>
-          <td class="paramtype">char **&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>left</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>right</em>&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(const void *, const void *)&#160;</td>
+          <td class="paramname"><em>Compare</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -196,21 +174,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Does partition for quick sort. </p>
+<p>Partition in quick sorting. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>strings array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>sorting data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>size of each element in data </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">left</td><td>left border </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">right</td><td>right border </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Compare</td><td>comparator function </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>size_t middle element number </dd></dl>
 
 </div>
 </div>
-<a id="a013c73f274c0b75d68e035cd7eafef19" name="a013c73f274c0b75d68e035cd7eafef19"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a013c73f274c0b75d68e035cd7eafef19">&#9670;&#160;</a></span>QSort()</h2>
+<a id="a3cddf755eac7aea5a945a2d2d8e0ba83" name="a3cddf755eac7aea5a945a2d2d8e0ba83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cddf755eac7aea5a945a2d2d8e0ba83">&#9670;&#160;</a></span>QSort()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,20 +197,32 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void QSort </td>
           <td>(</td>
-          <td class="paramtype">char **&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>left</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>right</em>&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(const void *, const void *)&#160;</td>
+          <td class="paramname"><em>Compare</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -241,34 +232,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Runs quick sorting. </p>
+<p>Quick sorting. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>strings array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>sorting data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>size of each element in data </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">left</td><td>left border </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">right</td><td>right border </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Compare</td><td>comparator function </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a59696fcb0f6a0c88c4358cf76d6f5d62" name="a59696fcb0f6a0c88c4358cf76d6f5d62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59696fcb0f6a0c88c4358cf76d6f5d62">&#9670;&#160;</a></span>StdCompare()</h2>
+<a id="ad7eeba3d0cb775c757932868a2b02650" name="ad7eeba3d0cb775c757932868a2b02650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7eeba3d0cb775c757932868a2b02650">&#9670;&#160;</a></span>ReverseCompare()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int StdCompare </td>
+          <td class="memname">int ReverseCompare </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>first_line</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>second_line</em>&#160;</td>
         </tr>
         <tr>
@@ -279,19 +272,105 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Compares strings from their beginning (standart alphabet compare) </p>
+<p>Compares two strings from end. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first_line</td><td>first string </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">second_line</td><td>second string </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_line</td><td>first line </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second_line</td><td>second line </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 if first line must be first </dd>
+<dl class="section return"><dt>Returns</dt><dd>-1 if first line must go first </dd>
 <dd>
-0 if strings are same, or one of them is prefix of another </dd>
+0 if one of strings is prefix of another </dd>
 <dd>
-1 if second string must be first </dd></dl>
+1 if second string must go first </dd></dl>
+
+</div>
+</div>
+<a id="a8cccb4403aa64129cf522fd2a1b40ff2" name="a8cccb4403aa64129cf522fd2a1b40ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cccb4403aa64129cf522fd2a1b40ff2">&#9670;&#160;</a></span>StdCompare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StdCompare </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>first_line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>second_line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares two strings from beginning. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_line</td><td>first line </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second_line</td><td>second line </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if first line must go first </dd>
+<dd>
+0 if one of strings is prefix of another </dd>
+<dd>
+1 if second string must go first </dd></dl>
+
+</div>
+</div>
+<a id="ad91f554cf3bc4cd400ce7dce8463942e" name="ad91f554cf3bc4cd400ce7dce8463942e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91f554cf3bc4cd400ce7dce8463942e">&#9670;&#160;</a></span>Swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Swap </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Swaps two elements in memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr1</td><td>first element </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr2</td><td>second element </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>element size </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -5,6 +5,19 @@
 #include "getoutinfo.h"
 #include "sorter.h"
 #include "errors.h"
+#include "test.h"
+
+// #define TEST
+
+#ifdef TEST
+
+int main()
+{
+    TestQSort();
+    return 0;
+}
+
+#else
 
 int main()
 {
@@ -53,4 +66,6 @@ int main()
 
     DestructTextStorage(&info);
 }
+
+#endif
 

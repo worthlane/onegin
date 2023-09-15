@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['getoutinfo_2eh_0',['getoutinfo.h',['../getoutinfo_8h.html',1,'']]]
+  ['errors_0',['ERRORS',['../errors_8h.html#a622ccac4bed4b5ffcfd1acea83629286',1,'errors.h']]],
+  ['errors_2eh_1',['errors.h',['../errors_8h.html',1,'']]]
 ];

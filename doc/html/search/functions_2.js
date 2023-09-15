@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['insertionsort_0',['InsertionSort',['../sorter_8h.html#aa60a2e2e4468130ffb238ba83e3f7600',1,'sorter.cpp']]]
+  ['partition_0',['Partition',['../sorter_8h.html#a17e8bb133b8587655ab99899faf8b0c7',1,'sorter.cpp']]],
+  ['printarray_1',['PrintArray',['../test_8h.html#a2a24bf27181005d31e74ed70cfea9bfe',1,'test.cpp']]],
+  ['printbuf_2',['PrintBuf',['../getoutinfo_8h.html#a20f1207e30550c38b019e836928ceeb1',1,'getoutinfo.cpp']]],
+  ['printline_3',['PrintLine',['../getoutinfo_8h.html#ab2094c75a920caa9f3c1784bc7279230',1,'getoutinfo.cpp']]],
+  ['printtext_4',['PrintText',['../getoutinfo_8h.html#ae3a6b8f9e3a98fdecc64362f44c1f559',1,'getoutinfo.cpp']]]
 ];

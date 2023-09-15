@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['partition_0',['Partition',['../sorter_8h.html#a7fc52a44554b57ce2003603e23760514',1,'sorter.cpp']]],
-  ['printline_1',['PrintLine',['../getoutinfo_8h.html#a7cfab985519cbc8ba66159046c7a9a44',1,'getoutinfo.cpp']]],
-  ['printtext_2',['PrintText',['../getoutinfo_8h.html#a9d99b5ca6313bf2e40188d5db5cc1934',1,'getoutinfo.cpp']]]
+  ['onegin_0',['onegin',['../md__r_e_a_d_m_e.html',1,'']]],
+  ['open_5ffile_1',['OPEN_FILE',['../errors_8h.html#a622ccac4bed4b5ffcfd1acea83629286a64fe8150a69fbdeea7a53ef7762f4713',1,'errors.h']]]
 ];

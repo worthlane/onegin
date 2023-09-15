@@ -15,7 +15,7 @@ CXXFLAGS =  -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressive-
 			-Wstack-usage=8192 -fPIE -Werror=vla
 BUILD_DIR = build/bin
 OBJECTS_DIR = build
-SOURCES = main.cpp getoutinfo.cpp sorter.cpp
+SOURCES = main.cpp getoutinfo.cpp sorter.cpp test.cpp
 OBJECTS = $(SOURCES:%.cpp=$(OBJECTS_DIR)/%.o)
 DOXYFILE = Doxyfile
 DOXYBUILD = doxygen $(DOXYFILE)

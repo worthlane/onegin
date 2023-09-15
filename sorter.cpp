@@ -5,19 +5,41 @@
 
 #include "sorter.h"
 #include "getoutinfo.h"
+#include "test.h"
 
 #define DEBUG
 
-static void Swap(void* ptr1, void* ptr2);
+static const size_t buf_size = 64;
 
-static void Swap(void* ptr1, void* ptr2)
+void Swap(void* ptr1, void* ptr2, size_t size)
 {
-    char** pointer1 = (char**) ptr1;
-    char** pointer2 = (char**) ptr2;
+    assert(ptr1);
+    assert(ptr2);
+    assert(ptr1 != ptr2);
 
-    char* temp = *pointer1;
-    *pointer1  = *pointer2;
-    *pointer2  = temp;
+    char buf[buf_size] = {};
+    size_t steps = size / buf_size;
+    size_t last  = size % buf_size;
+
+    for (size_t i = 0; i < steps; i++)
+    {
+        memcpy(buf, ptr1, buf_size);
+        assert(buf);
+
+        memcpy(ptr1, ptr2, buf_size);
+        assert(ptr1);
+
+        memcpy(ptr2, buf, buf_size);
+        assert(ptr2);
+    }
+    memcpy(buf, ptr1, last);
+    assert(buf);
+
+    memcpy(ptr1, ptr2, last);
+    assert(ptr1);
+
+    memcpy(ptr2, buf, last);
+    assert(ptr2);
 }
 
 //-------------------------------------------------------------------------------------------
@@ -60,7 +82,7 @@ int StdCompare(const void* first_line, const void* second_line)
 
 //-------------------------------------------------------------------------------------------
 
-void QSort(void* data, const size_t size, const size_t left, const size_t right,
+void QSort(const void* data, const size_t size, const size_t left, const size_t right,
            int (*Compare) (const void *, const void *))
 {
     assert(data);
@@ -72,12 +94,12 @@ void QSort(void* data, const size_t size, const size_t left, const size_t right,
 		{
 			if ((*Compare)(data + left * size, data + right * size) != LESS)
 			{
-				Swap(data + right * size, data + left * size);
+				Swap((void*) data + right * size, (void*) data + left * size, size);
 			}
 		}
         else
         {
-		    size_t mid = Partition(data, sizeof(char*), left, right, Compare);
+		    size_t mid = Partition(data, size, left, right, Compare);
 
 		    QSort(data, size, left, mid, Compare);
 		    QSort(data, size, mid + 1, right, Compare);
@@ -87,25 +109,27 @@ void QSort(void* data, const size_t size, const size_t left, const size_t right,
 
 //-------------------------------------------------------------------------------------------
 
-size_t Partition(void* data, const size_t size, const size_t left, const size_t right,
+size_t Partition(const void* data, const size_t size, const size_t left, const size_t right,
                  int (*Compare) (const void *, const void *))
 {
     assert(data);
     assert(left <= right);
 
-    void* mid = data + ((left + right) / 2) * size;
+    size_t mid_pos = (left + right) / 2;
+
+    const void* mid = data + mid_pos * size;
 
     size_t left_ptr  = left;
     size_t right_ptr = right;
 
     while (left_ptr <= right_ptr)
     {
-        while ((*Compare)(data + left_ptr * size, mid) == LESS && right_ptr > left_ptr)
+        while ((*Compare)(data + left_ptr * size, mid) == LESS)
         {
             left_ptr++;
         }
 
-        while ((*Compare)(data + right_ptr * size, mid) == MORE && right_ptr > left_ptr)
+        while ((*Compare)(data + right_ptr * size, mid) == MORE)
         {
             right_ptr--;
         }
@@ -113,7 +137,18 @@ size_t Partition(void* data, const size_t size, const size_t left, const size_t 
 		if (left_ptr >= right_ptr)
 			break;
 
-        Swap(data + left_ptr * size, data + right_ptr * size);
+        if (data + left_ptr * size == mid)
+        {
+            mid = data + right_ptr * size;
+            mid_pos = right_ptr;
+        }
+        else if (data + right_ptr * size == mid)
+        {
+            mid = data + left_ptr * size;
+            mid_pos = left_ptr;
+        }
+
+        Swap((void*) data + left_ptr * size, (void*) data + right_ptr * size, size);
 
 		left_ptr++;
 		right_ptr--;
@@ -121,7 +156,7 @@ size_t Partition(void* data, const size_t size, const size_t left, const size_t 
     return right_ptr;
 }
 
-
+//-------------------------------------------------------------------------------------------
 
 int ReverseCompare(const void* first_line, const void* second_line)
 {
@@ -164,5 +199,7 @@ int ReverseCompare(const void* first_line, const void* second_line)
     }
     return EQUAL;
 }
+
+
 
 
