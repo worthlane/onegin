@@ -83,7 +83,7 @@ int StdCompare(const void* first_line, const void* second_line)
 //-------------------------------------------------------------------------------------------
 
 void QSort(const void* data, const size_t size, const size_t left, const size_t right,
-           int (*Compare) (const void *, const void *))
+           comparator_t* Compare)
 {
     assert(data);
     assert(left <= right);
@@ -92,7 +92,7 @@ void QSort(const void* data, const size_t size, const size_t left, const size_t 
 	{
         if (right - left == 1)
 		{
-			if ((*Compare)(data + left * size, data + right * size) != LESS)
+			if (Compare(data + left * size, data + right * size) != LESS)
 			{
 				Swap((void*) data + right * size, (void*) data + left * size, size);
 			}
@@ -110,7 +110,7 @@ void QSort(const void* data, const size_t size, const size_t left, const size_t 
 //-------------------------------------------------------------------------------------------
 
 size_t Partition(const void* data, const size_t size, const size_t left, const size_t right,
-                 int (*Compare) (const void *, const void *))
+                 comparator_t* Compare)
 {
     assert(data);
     assert(left <= right);
@@ -124,12 +124,12 @@ size_t Partition(const void* data, const size_t size, const size_t left, const s
 
     while (left_ptr <= right_ptr)
     {
-        while ((*Compare)(data + left_ptr * size, mid) == LESS)
+        while (Compare(data + left_ptr * size, mid) == LESS)
         {
             left_ptr++;
         }
 
-        while ((*Compare)(data + right_ptr * size, mid) == MORE)
+        while (Compare(data + right_ptr * size, mid) == MORE)
         {
             right_ptr--;
         }
@@ -197,6 +197,24 @@ int ReverseCompare(const void* first_line, const void* second_line)
             second_ptr--;
         }
     }
+    return EQUAL;
+}
+
+//-------------------------------------------------------------------------------------------
+
+int AdressCompare(const void* first_adress, const void* second_adress)
+{
+    assert(first_adress);
+    assert(second_adress);
+
+    const long int A = *((const long int*) first_adress);
+    const long int B = *((const long int*) second_adress);
+
+    if (A > B)
+        return MORE;
+    else if (A < B)
+        return LESS;
+
     return EQUAL;
 }
 

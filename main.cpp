@@ -4,7 +4,7 @@
 
 #include "getoutinfo.h"
 #include "sorter.h"
-#include "errors.h"
+#include "mylib/errors.h"
 #include "test.h"
 
 // #define TEST
@@ -25,7 +25,7 @@ int main()
 
     int error = CreateTextStorage(&info);
 
-    if (error != (int) ERRORS::NOT)
+    if (error != (int) ERRORS::NONE)
         return error;
 
     ClearFile(OUTPUT_FILE);
@@ -59,7 +59,12 @@ int main()
 
     // ------------ PRINT ORIGINAL VERSION -------------
 
-    if(!PrintBuf(info.buf, info.text_len, "ORIGINAL VERSION"))
+    QSort(info.lines_ptrs, sizeof(char*), 0,
+          info.line_amt - 1, &AdressCompare);
+    // increasing one to prevent crossing array borders
+
+    if(!PrintText((const char**) info.lines_ptrs, info.line_amt,
+                   "ORIGINAL VERSION"))
         return (int) ERRORS::PRINT_DATA;
 
     // -------------------------------------------------

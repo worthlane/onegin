@@ -1,7 +1,7 @@
 #include <assert.h>
 
 #include "sorter.h"
-#include "colorlib.h"
+#include "mylib/colorlib.h"
 #include "test.h"
 
 #define TEST_LEN 15

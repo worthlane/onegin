@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lines_5fptrs_0',['lines_ptrs',['../struct_storage.html#a23da2847bb4a1296d338ea30a7642e77',1,'Storage']]]
+  ['onegin_0',['onegin',['../md__r_e_a_d_m_e.html',1,'']]]
 ];

@@ -71,6 +71,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">sorter.h File Reference</div></div>
@@ -83,6 +84,12 @@ $(function() {
 </div>
 <p><a href="sorter_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:adf33577caaed278967b64cef48ec1d65"><td class="memItemLeft" align="right" valign="top"><a id="adf33577caaed278967b64cef48ec1d65" name="adf33577caaed278967b64cef48ec1d65"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>comparator_t</b>(const void *first, const void *second)</td></tr>
+<tr class="separator:adf33577caaed278967b64cef48ec1d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ace67d421b0a753740a12d3aedbea57c0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#ace67d421b0a753740a12d3aedbea57c0">Comparison</a> { <b>LESS</b> = -1
@@ -103,12 +110,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ad7eeba3d0cb775c757932868a2b02650"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#ad7eeba3d0cb775c757932868a2b02650">ReverseCompare</a> (const void *first_line, const void *second_line)</td></tr>
 <tr class="memdesc:ad7eeba3d0cb775c757932868a2b02650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two strings from end.  <br /></td></tr>
 <tr class="separator:ad7eeba3d0cb775c757932868a2b02650"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cddf755eac7aea5a945a2d2d8e0ba83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a3cddf755eac7aea5a945a2d2d8e0ba83">QSort</a> (const void *data, const size_t size, const size_t left, const size_t right, int(*Compare)(const void *, const void *))</td></tr>
-<tr class="memdesc:a3cddf755eac7aea5a945a2d2d8e0ba83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick sorting.  <br /></td></tr>
-<tr class="separator:a3cddf755eac7aea5a945a2d2d8e0ba83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17e8bb133b8587655ab99899faf8b0c7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a17e8bb133b8587655ab99899faf8b0c7">Partition</a> (const void *data, const size_t size, const size_t left, const size_t right, int(*Compare)(const void *, const void *))</td></tr>
-<tr class="memdesc:a17e8bb133b8587655ab99899faf8b0c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition in quick sorting.  <br /></td></tr>
-<tr class="separator:a17e8bb133b8587655ab99899faf8b0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2bc2d8be36e13a793ff49431c35610d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#af2bc2d8be36e13a793ff49431c35610d">QSort</a> (const void *data, const size_t size, const size_t left, const size_t right, comparator_t *Compare)</td></tr>
+<tr class="memdesc:af2bc2d8be36e13a793ff49431c35610d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick sorting.  <br /></td></tr>
+<tr class="separator:af2bc2d8be36e13a793ff49431c35610d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b566b728017aaa1b9b6789824f6c574"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a6b566b728017aaa1b9b6789824f6c574">Partition</a> (const void *data, const size_t size, const size_t left, const size_t right, comparator_t *Compare)</td></tr>
+<tr class="memdesc:a6b566b728017aaa1b9b6789824f6c574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partition in quick sorting.  <br /></td></tr>
+<tr class="separator:a6b566b728017aaa1b9b6789824f6c574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f1cb9e765d888e2815bfc57affd7b9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sorter_8h.html#a8f1cb9e765d888e2815bfc57affd7b9b">AdressCompare</a> (const void *first_adress, const void *second_adress)</td></tr>
+<tr class="memdesc:a8f1cb9e765d888e2815bfc57affd7b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two adresses, that are containing in memory.  <br /></td></tr>
+<tr class="separator:a8f1cb9e765d888e2815bfc57affd7b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>contains comparing functions </p>
@@ -130,8 +140,50 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a17e8bb133b8587655ab99899faf8b0c7" name="a17e8bb133b8587655ab99899faf8b0c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17e8bb133b8587655ab99899faf8b0c7">&#9670;&#160;</a></span>Partition()</h2>
+<a id="a8f1cb9e765d888e2815bfc57affd7b9b" name="a8f1cb9e765d888e2815bfc57affd7b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1cb9e765d888e2815bfc57affd7b9b">&#9670;&#160;</a></span>AdressCompare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AdressCompare </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>first_adress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>second_adress</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares two adresses, that are containing in memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_adress</td><td>first adress </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second_adress</td><td>second adress </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if first_adress &lt; second_adress </dd>
+<dd>
+0 if first_adress = second_adress </dd>
+<dd>
+1 if first_adress &gt; second_adress </dd></dl>
+
+</div>
+</div>
+<a id="a6b566b728017aaa1b9b6789824f6c574" name="a6b566b728017aaa1b9b6789824f6c574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b566b728017aaa1b9b6789824f6c574">&#9670;&#160;</a></span>Partition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,7 +215,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int(*)(const void *, const void *)&#160;</td>
+          <td class="paramtype">comparator_t *&#160;</td>
           <td class="paramname"><em>Compare</em>&#160;</td>
         </tr>
         <tr>
@@ -188,8 +240,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3cddf755eac7aea5a945a2d2d8e0ba83" name="a3cddf755eac7aea5a945a2d2d8e0ba83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cddf755eac7aea5a945a2d2d8e0ba83">&#9670;&#160;</a></span>QSort()</h2>
+<a id="af2bc2d8be36e13a793ff49431c35610d" name="af2bc2d8be36e13a793ff49431c35610d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2bc2d8be36e13a793ff49431c35610d">&#9670;&#160;</a></span>QSort()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,7 +273,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int(*)(const void *, const void *)&#160;</td>
+          <td class="paramtype">comparator_t *&#160;</td>
           <td class="paramname"><em>Compare</em>&#160;</td>
         </tr>
         <tr>

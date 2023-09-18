@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['destructlineptrsarray_0',['DestructLinePtrsArray',['../getoutinfo_8h.html#a952af2f9c9a2b73ac6f451cc2850c65d',1,'getoutinfo.h']]],
-  ['destructtextbuf_1',['DestructTextBuf',['../getoutinfo_8h.html#a482ad1f97f4ac42aaa3f53f10dd1c45d',1,'getoutinfo.h']]],
-  ['destructtextstorage_2',['DestructTextStorage',['../getoutinfo_8h.html#abd443599de55d945adab13e8c041b85a',1,'getoutinfo.h']]]
+  ['clearfile_0',['ClearFile',['../getoutinfo_8h.html#a62d1048e67e0e01f149383fb6f6f894b',1,'getoutinfo.cpp']]],
+  ['compareint_1',['CompareInt',['../test_8h.html#a5c561d60a205722413d8e55fa6fd0788',1,'test.cpp']]],
+  ['countfilelength_2',['CountFileLength',['../getoutinfo_8h.html#a1fdad742635c38792e2d10129fba0aee',1,'getoutinfo.cpp']]],
+  ['createlineptrsarray_3',['CreateLinePtrsArray',['../getoutinfo_8h.html#a948ec9164769ca5e4fb6652273ac35ca',1,'getoutinfo.cpp']]],
+  ['createtextbuf_4',['CreateTextBuf',['../getoutinfo_8h.html#aab32283e283a61c0efc9241c87d352c0',1,'getoutinfo.cpp']]],
+  ['createtextstorage_5',['CreateTextStorage',['../getoutinfo_8h.html#a07dcfb4d253778ce455f8a095744253d',1,'getoutinfo.cpp']]]
 ];

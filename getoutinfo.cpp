@@ -5,7 +5,7 @@
 #include <ctype.h>
 
 #include "getoutinfo.h"
-#include "errors.h"
+#include "mylib/errors.h"
 
 char* CreateTextBuf(struct Storage* info)
 {
@@ -22,8 +22,8 @@ char* CreateTextBuf(struct Storage* info)
 
     info->text_len = CountFileLength(INPUT_FILE);
 
+    // Add 1 for NUL-terminator ---------------v
     info->buf = (char* ) calloc(info->text_len + 1, sizeof(char));
-    // *text_len + 1 for confidence, that program will have enough memory
 
     if (fread(info->buf, sizeof(char), info->text_len, fp) != info->text_len)
         return NULL;
@@ -142,7 +142,7 @@ int CreateTextStorage(struct Storage* info)
     if (info->lines_ptrs == NULL)
         return (int) ERRORS::ALLOCATE_MEMORY;
 
-    return (int) ERRORS::NOT;
+    return (int) ERRORS::NONE;
 }
 
 //-------------------------------------------------------------------------------------------

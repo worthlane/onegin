@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reversecompare_0',['ReverseCompare',['../sorter_8h.html#ad7eeba3d0cb775c757932868a2b02650',1,'sorter.cpp']]]
+  ['qsort_0',['QSort',['../sorter_8h.html#af2bc2d8be36e13a793ff49431c35610d',1,'sorter.cpp']]]
 ];

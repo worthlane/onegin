@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['partition_0',['Partition',['../sorter_8h.html#a17e8bb133b8587655ab99899faf8b0c7',1,'sorter.cpp']]],
-  ['printarray_1',['PrintArray',['../test_8h.html#a2a24bf27181005d31e74ed70cfea9bfe',1,'test.cpp']]],
-  ['printbuf_2',['PrintBuf',['../getoutinfo_8h.html#a20f1207e30550c38b019e836928ceeb1',1,'getoutinfo.cpp']]],
-  ['printline_3',['PrintLine',['../getoutinfo_8h.html#ab2094c75a920caa9f3c1784bc7279230',1,'getoutinfo.cpp']]],
-  ['printtext_4',['PrintText',['../getoutinfo_8h.html#ae3a6b8f9e3a98fdecc64362f44c1f559',1,'getoutinfo.cpp']]]
+  ['destructlineptrsarray_0',['DestructLinePtrsArray',['../getoutinfo_8h.html#a952af2f9c9a2b73ac6f451cc2850c65d',1,'getoutinfo.h']]],
+  ['destructtextbuf_1',['DestructTextBuf',['../getoutinfo_8h.html#a482ad1f97f4ac42aaa3f53f10dd1c45d',1,'getoutinfo.h']]],
+  ['destructtextstorage_2',['DestructTextStorage',['../getoutinfo_8h.html#abd443599de55d945adab13e8c041b85a',1,'getoutinfo.h']]]
 ];

@@ -7,6 +7,8 @@
 * \brief contains comparing functions
 */
 
+typedef int comparator_t(const void* first, const void* second);
+
 /************************************************************//**
  * @brief Swaps two elements in memory
  *
@@ -52,7 +54,7 @@ int ReverseCompare(const void* first_line, const void* second_line);
  ***********************************************************/
 
 void QSort(const void* data, const size_t size, const size_t left, const size_t right,
-           int (*Compare) (const void *, const void *));
+           comparator_t* Compare);
 
 /************************************************************//**
  * @brief Partition in quick sorting
@@ -65,7 +67,7 @@ void QSort(const void* data, const size_t size, const size_t left, const size_t 
  ***********************************************************/
 
 size_t Partition(const void* data, const size_t size, const size_t left, const size_t right,
-                 int (*Compare) (const void *, const void *));
+                 comparator_t* Compare);
 
 
 /************************************************************//**
@@ -77,5 +79,16 @@ enum Comparison
     EQUAL =  0,
     MORE  =  1
 };
+
+/************************************************************//**
+ * @brief Compares two adresses, that are containing in memory
+ *
+ * @param[in] first_adress first adress
+ * @param[in] second_adress second adress
+ * @return -1 if first_adress < second_adress
+ * @return 0 if first_adress = second_adress
+ * @return 1 if first_adress > second_adress
+ ***********************************************************/
+int AdressCompare(const void* first_adress, const void* second_adress);
 
 #endif
