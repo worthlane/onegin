@@ -639,6 +639,7 @@ ALPHABET SORTING FROM BEGINNING
      and with his dinner, and his wife.
      and, with it, forced renown to come --
      and with its feeble glow outlining
+     and, with my Eugene, so have I.
      and with no post, no work, no wife,
      and with the decorous throng to follow
      and wore his dressing-gown to dine.
@@ -5318,10 +5319,8 @@ ALPHABET SORTING FROM BEGINNING
      Zaretsky watched, and stood there grinning.
      Zarétsky, sometime king of brawls
      Zizi, my crystal and my gem,
-     and, with my Eugene, so have I.
 
-----------------------------------------------------------------------------
-
+------------------------------------------------------------------
 ALPHABET SORTING FROM END
 
      have gnawed our bridges, and the flea
@@ -8610,6 +8609,7 @@ ALPHABET SORTING FROM END
      Lending his tone a grave inflection,
      He lacked the slightest predilection
      what held me was my predilection,
+
      To reading from this odd collection
      He found them in some old collection,
      absorbed me in the recollection
@@ -10643,9 +10643,7 @@ ALPHABET SORTING FROM END
      inexorably wed to duty,
      All flourishing; they send their duty.
      meanwhile with a dissembler's duty
-
-----------------------------------------------------------------------------
-
+------------------------------------------------------------------
 ORIGINAL VERSION
 
     ``My uncle -- high ideals inspire him;
@@ -15967,6 +15965,4 @@ ORIGINAL VERSION
      of finishing its book, but early
      has wished it an abrupt goodbye --
      and, with my Eugene, so have I.
-
-----------------------------------------------------------------------------
 

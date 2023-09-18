@@ -42,7 +42,7 @@ int CompareInt(const void* a, const void* b)
     const int B = *((const int*) b);
 
     if (A > B)
-        return MORE;
+        return GREATER;
     else if (A < B)
         return LESS;
 

@@ -1,1 +1,5 @@
 *.out
+a.out.dSYM
+.vscode
+build
+.DS_Store

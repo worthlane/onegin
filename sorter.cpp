@@ -4,7 +4,7 @@
 #include <assert.h>
 
 #include "sorter.h"
-#include "getoutinfo.h"
+#include "input_and_output.h"
 #include "test.h"
 
 #define DEBUG
@@ -49,34 +49,44 @@ int StdCompare(const void* first_line, const void* second_line)
     assert(first_line);
     assert(second_line);
 
-    const struct LineParams* first_string  = (const struct LineParams*) first_line;
-    const struct LineParams* second_string = (const struct LineParams*) second_line;
+    const struct LineParams* first  = (const struct LineParams*) first_line;
+    const struct LineParams* second = (const struct LineParams*) second_line;
 
     int first_ptr  = 0;
     int second_ptr = 0;
 
-    while ((first_string->string)[first_ptr] != '\0' && (second_string->string)[second_ptr] != '\0')
+    while ((first->string)[first_ptr] != '\0' && (second->string)[second_ptr] != '\0')
     {
-        if (isalpha((first_string->string)[first_ptr]) && isalpha((second_string->string)[second_ptr]))
+        if (isalpha((first->string)[first_ptr]) && isalpha((second->string)[second_ptr]))
         {
-            int second = toupper((second_string->string)[second_ptr++]);
-            int first  = toupper((first_string->string)[first_ptr++]);
-            if (second == first)
+            int second_symbol = toupper((second->string)[second_ptr++]);
+            int first_symbol  = toupper((first->string)[first_ptr++]);
+            if (second_symbol == first_symbol)
                 continue;
-            else if (first < second)
+            else if (first_symbol < second_symbol)
                 return LESS;
             else
-                return MORE;
+                return GREATER;
         }
-        else if (!isalpha((first_string->string)[first_ptr]))
+        else if (!isalpha((first->string)[first_ptr]))
         {
             first_ptr++;
         }
-        else if (!isalpha((second_string->string)[second_ptr]))
+        else if (!isalpha((second->string)[second_ptr]))
         {
             second_ptr++;
         }
     }
+
+    if ((first->string)[first_ptr] - (second->string)[second_ptr] < 0)
+    {
+        return LESS;
+    }
+    else if ((first->string)[first_ptr] - (second->string)[second_ptr] > 0)
+    {
+        return GREATER;
+    }
+
     return EQUAL;
 }
 
@@ -89,15 +99,14 @@ void QSort(const void* info, const size_t size, const size_t left, const size_t 
     assert(left <= right);
 
     char* data = (char*) info;
+    assert(data);
 
 	if (left < right)
 	{
         if (right - left == 1)
 		{
 			if (Compare(data + left * size, data + right * size) != LESS)
-			{
 				Swap(data + right * size, data + left * size, size);
-			}
 		}
         else
         {
@@ -118,10 +127,12 @@ size_t Partition(const void* info, const size_t size, const size_t left, const s
     assert(left <= right);
 
     char* data = (char*) info;
+    assert(data);
 
     size_t mid_pos = (left + right) / 2;
 
     const void* mid = data + mid_pos * size;
+    assert(mid);
 
     size_t left_ptr  = left;
     size_t right_ptr = right;
@@ -130,11 +141,13 @@ size_t Partition(const void* info, const size_t size, const size_t left, const s
     {
         while (Compare(data + left_ptr * size, mid) == LESS)
         {
+            assert(left_ptr <= right_ptr);
             left_ptr++;
         }
 
-        while (Compare(data + right_ptr * size, mid) == MORE)
+        while (Compare(data + right_ptr * size, mid) == GREATER)
         {
+            assert(left_ptr <= right_ptr);
             right_ptr--;
         }
 
@@ -182,7 +195,7 @@ int ReverseCompare(const void* first_line, const void* second_line)
             else if (first_symbol < second_symbol)
                 return LESS;
             else
-                return MORE;
+                return GREATER;
         }
         else if (!isalpha((first->string)[first_ptr]))
         {
@@ -193,6 +206,15 @@ int ReverseCompare(const void* first_line, const void* second_line)
             second_ptr--;
         }
     }
+
+    /*if ((first->string)[first_ptr] - (second->string)[second_ptr] < 0)
+    {
+        return LESS;
+    }
+    else if ((first->string)[first_ptr] - (second->string)[second_ptr] > 0)
+    {
+        return GREATER;
+    }*/
     return EQUAL;
 }
 
@@ -207,7 +229,7 @@ int AdressCompare(const void* first_adress, const void* second_adress)
     const long int B = *((const long int*) second_adress);
 
     if (A > B)
-        return MORE;
+        return GREATER;
     else if (A < B)
         return LESS;
 

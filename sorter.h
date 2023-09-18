@@ -75,9 +75,9 @@ size_t Partition(const void* data, const size_t size, const size_t left, const s
  ************************************************************/
 enum Comparison
 {
-    LESS  = -1,
-    EQUAL =  0,
-    MORE  =  1
+    LESS     = -1,
+    EQUAL    =  0,
+    GREATER  =  1
 };
 
 /************************************************************//**

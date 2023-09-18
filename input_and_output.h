@@ -34,37 +34,14 @@ struct Storage
  * @param[in] file_name name of opening file
  * @return amount of symbols in file
  *************************************************************/
-off_t CountFileLength(const char* file_name);
+off_t GetFileLength(const char* file_name);
 
-/************************************************************//**
- * @brief Reads text from file, allocates memory for text buffer,
- *
- * @param[in] info structure with info about text buffer
- * @return char* pointer on text buffer
- * @return NULL if there was an error
- ************************************************************/
-char* CreateTextBuf(struct Storage* info);
+int FindLinesStart(struct Storage* info, struct ErrorInfo* error);
 
-struct LineParams* CreateLinePtrsArray(struct Storage* info);
+bool PrintAllLines(FILE* stream, const struct LineParams* lines,
+                   const size_t line_amount, struct ErrorInfo* error);
 
-bool PrintText(const struct LineParams* lines, const size_t line_amount, const char* header);
-
-void PrintLine(const struct LineParams* lines, const size_t line, FILE* fp);
-
-/************************************************************//**
- * @brief Destructs text buffer and clears memory
- *
- * @param[in] buf text buffer
- ************************************************************/
-inline void DestructTextBuf(char* buf)
-{
-    free(buf);
-}
-
-inline void DestructLinePtrsArray(struct LineParams* lines)
-{
-    free(lines);
-}
+void PrintOneLine(FILE* stream, const struct LineParams* line, struct ErrorInfo* error);
 
 /************************************************************//**
  * @brief Create a Text Storage object
@@ -72,7 +49,7 @@ inline void DestructLinePtrsArray(struct LineParams* lines)
  * @param[in] info storage
  * @return int error
  ************************************************************/
-int CreateTextStorage(struct Storage* info);
+int CreateTextStorage(struct Storage* info, struct ErrorInfo* error);
 
 /************************************************************//**
  * @brief Clears file from text in it
@@ -81,18 +58,13 @@ int CreateTextStorage(struct Storage* info);
  * @return true if file cleared succesfully
  * @return false if there was an error while clearing file
  ************************************************************/
-bool ClearFile(const char* FILE_NAME);
+bool EraseFile(const char* FILE_NAME);
 
-/************************************************************//**
- * @brief Prints info from buffer
- *
- * @param[in] buf buffer
- * @param[in] text_len amount of symbols in file
- * @param[in] header header
- * @return true if info printed succesfully
- * @return false if there was an error
- ************************************************************/
-bool PrintBuf(const char* buf, const size_t text_len, const char* header);
+void PrintBuf(FILE* stream, const char* buf, const size_t text_len);
+
+bool PrintHeader(FILE* stream, const char* header);
+
+bool PrintSeparator(FILE* stream);
 
 /************************************************************//**
  * @brief Destructs a Text Storage object
@@ -101,8 +73,10 @@ bool PrintBuf(const char* buf, const size_t text_len, const char* header);
  ************************************************************/
 inline void DestructTextStorage(struct Storage* info)
 {
-    DestructLinePtrsArray(info->lines);
-    DestructTextBuf(info->buf);
+    free(info->lines);
+    free(info->buf);
 }
+
+int PrintError(struct ErrorInfo* error);
 
 #endif
