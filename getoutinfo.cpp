@@ -47,35 +47,40 @@ char* CreateTextBuf(struct Storage* info)
 
 //-------------------------------------------------------------------------------------------
 
-char** CreateLinePtrsArray(struct Storage* info)
+struct LineParams* CreateLinePtrsArray(struct Storage* info)
 {
     assert(info);
 
-    info->lines_ptrs = (char** ) calloc(info->line_amt, sizeof(char*));
+    info->lines = (struct LineParams* ) calloc(info->line_amt, sizeof(struct LineParams));
 
-    if (info->lines_ptrs ==  NULL)
+    if (info->lines ==  NULL)
         return NULL;
 
-    info->lines_ptrs[0] = (char* ) info->buf;
+    info->lines[0].string = (char* ) info->buf;
 
-    size_t line = 1;
+    size_t line       = 1;
+    size_t string_len = 0;
 
     for (off_t i = 0; i < info->text_len; i++)
     {
         if (info->buf[i] == '\0')
         {
-            info->lines_ptrs[line++] = info->buf + i + 1;
+            info->lines[line - 1].len  = info->buf + i - info->lines[line - 1].string;
+            info->lines[line++].string = info->buf + i + 1;
+
+            string_len = 0;
         }
+        string_len++;
     }
 
-    return info->lines_ptrs;
+    return info->lines;
 }
 
 //-------------------------------------------------------------------------------------------
 
-bool PrintText(const char** lines_pointers, const size_t line_amount, const char* header)
+bool PrintText(const struct LineParams* lines, const size_t line_amount, const char* header)
 {
-    assert(lines_pointers);
+    assert(lines);
 
     FILE* fp = fopen(OUTPUT_FILE, "ab");
 
@@ -91,7 +96,7 @@ bool PrintText(const char** lines_pointers, const size_t line_amount, const char
 
     for (size_t line = 0; line < line_amount; line++)
     {
-        PrintLine(lines_pointers, line, fp);
+        PrintLine(lines, line, fp);
     }
 
     fprintf(fp, "\n----------------------------------------------------------------------------\n\n");
@@ -103,13 +108,13 @@ bool PrintText(const char** lines_pointers, const size_t line_amount, const char
 
 //-------------------------------------------------------------------------------------------
 
-void PrintLine(const char** lines_pointers, const size_t line, FILE* fp)
+void PrintLine(const struct LineParams* lines, const size_t line, FILE* fp)
 {
-    assert(lines_pointers);
+    assert(lines);
 
-    for (int i = 0; lines_pointers[line][i] != '\0'; i++)
+    for (int i = 0; (lines[line].string)[i] != '\0'; i++)
     {
-        fputc(lines_pointers[line][i], fp);
+        fputc((lines[line].string)[i], fp);
     }
 
     fputc('\n', fp);
@@ -137,9 +142,9 @@ int CreateTextStorage(struct Storage* info)
     if (info->buf == NULL)
         return (int) ERRORS::READ_FILE;
 
-    info->lines_ptrs = CreateLinePtrsArray(info);
+    info->lines = CreateLinePtrsArray(info);
 
-    if (info->lines_ptrs == NULL)
+    if (info->lines == NULL)
         return (int) ERRORS::ALLOCATE_MEMORY;
 
     return (int) ERRORS::NONE;
@@ -180,8 +185,6 @@ bool PrintBuf(const char* buf, const size_t text_len, const char* header)
 
     if (header != NULL)
         fprintf(fp, "%s\n\n", header);
-
-    // fwrite(buf, sizeof(char), text_len, fp); // not working cuz of nulls
 
     for (size_t i = 0; i < text_len; i++)
     {

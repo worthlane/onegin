@@ -32,10 +32,10 @@ int main()
 
     // -------- ALPHABET SORTING FROM BEGINNING --------
 
-    qsort(info.lines_ptrs, info.line_amt - 1, sizeof(char*), &StdCompare);
+    qsort(info.lines, info.line_amt - 1, sizeof(struct LineParams), &StdCompare);
     // increasing one to prevent crossing array borders
 
-    if(!PrintText((const char**) info.lines_ptrs, info.line_amt,
+    if(!PrintText(info.lines, info.line_amt,
                    "ALPHABET SORTING FROM BEGINNING"))
         return (int) ERRORS::PRINT_DATA;
 
@@ -45,11 +45,11 @@ int main()
 
     // ---------- ALPHABET SORTING FROM END ------------
 
-    QSort(info.lines_ptrs, sizeof(char*), 0,
+    QSort(info.lines, sizeof(struct LineParams), 0,
           info.line_amt - 1, &ReverseCompare);
     // increasing one to prevent crossing array borders
 
-    if(!PrintText((const char**) info.lines_ptrs, info.line_amt,
+    if(!PrintText(info.lines, info.line_amt,
                    "ALPHABET SORTING FROM END"))
         return (int) ERRORS::PRINT_DATA;
 
@@ -59,11 +59,11 @@ int main()
 
     // ------------ PRINT ORIGINAL VERSION -------------
 
-    QSort(info.lines_ptrs, sizeof(char*), 0,
+    QSort(info.lines, sizeof(struct LineParams), 0,
           info.line_amt - 1, &AdressCompare);
     // increasing one to prevent crossing array borders
 
-    if(!PrintText((const char**) info.lines_ptrs, info.line_amt,
+    if(!PrintText(info.lines, info.line_amt,
                    "ORIGINAL VERSION"))
         return (int) ERRORS::PRINT_DATA;
 

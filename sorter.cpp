@@ -49,18 +49,18 @@ int StdCompare(const void* first_line, const void* second_line)
     assert(first_line);
     assert(second_line);
 
-    const char* first_string  = *((const char**) first_line);
-    const char* second_string = *((const char**) second_line);
+    const struct LineParams* first_string  = (const struct LineParams*) first_line;
+    const struct LineParams* second_string = (const struct LineParams*) second_line;
 
     int first_ptr  = 0;
     int second_ptr = 0;
 
-    while (first_string[first_ptr] != '\0' && second_string[second_ptr] != '\0')
+    while ((first_string->string)[first_ptr] != '\0' && (second_string->string)[second_ptr] != '\0')
     {
-        if (isalpha(first_string[first_ptr]) && isalpha(second_string[second_ptr]))
+        if (isalpha((first_string->string)[first_ptr]) && isalpha((second_string->string)[second_ptr]))
         {
-            int second = toupper(second_string[second_ptr++]);
-            int first  = toupper(first_string[first_ptr++]);
+            int second = toupper((second_string->string)[second_ptr++]);
+            int first  = toupper((first_string->string)[first_ptr++]);
             if (second == first)
                 continue;
             else if (first < second)
@@ -68,11 +68,11 @@ int StdCompare(const void* first_line, const void* second_line)
             else
                 return MORE;
         }
-        else if (!isalpha(first_string[first_ptr]))
+        else if (!isalpha((first_string->string)[first_ptr]))
         {
             first_ptr++;
         }
-        else if (!isalpha(second_string[second_ptr]))
+        else if (!isalpha((second_string->string)[second_ptr]))
         {
             second_ptr++;
         }
@@ -82,11 +82,13 @@ int StdCompare(const void* first_line, const void* second_line)
 
 //-------------------------------------------------------------------------------------------
 
-void QSort(const void* data, const size_t size, const size_t left, const size_t right,
+void QSort(const void* info, const size_t size, const size_t left, const size_t right,
            comparator_t* Compare)
 {
-    assert(data);
+    assert(info);
     assert(left <= right);
+
+    char* data = (char*) info;
 
 	if (left < right)
 	{
@@ -94,7 +96,7 @@ void QSort(const void* data, const size_t size, const size_t left, const size_t 
 		{
 			if (Compare(data + left * size, data + right * size) != LESS)
 			{
-				Swap((void*) data + right * size, (void*) data + left * size, size);
+				Swap(data + right * size, data + left * size, size);
 			}
 		}
         else
@@ -109,11 +111,13 @@ void QSort(const void* data, const size_t size, const size_t left, const size_t 
 
 //-------------------------------------------------------------------------------------------
 
-size_t Partition(const void* data, const size_t size, const size_t left, const size_t right,
+size_t Partition(const void* info, const size_t size, const size_t left, const size_t right,
                  comparator_t* Compare)
 {
-    assert(data);
+    assert(info);
     assert(left <= right);
+
+    char* data = (char*) info;
 
     size_t mid_pos = (left + right) / 2;
 
@@ -140,15 +144,13 @@ size_t Partition(const void* data, const size_t size, const size_t left, const s
         if (data + left_ptr * size == mid)
         {
             mid = data + right_ptr * size;
-            mid_pos = right_ptr;
         }
         else if (data + right_ptr * size == mid)
         {
             mid = data + left_ptr * size;
-            mid_pos = left_ptr;
         }
 
-        Swap((void*) data + left_ptr * size, (void*) data + right_ptr * size, size);
+        Swap(data + left_ptr * size, data + right_ptr * size, size);
 
 		left_ptr++;
 		right_ptr--;
@@ -163,36 +165,30 @@ int ReverseCompare(const void* first_line, const void* second_line)
     assert(first_line);
     assert(second_line);
 
-    const char* first_string  = *((const char**) first_line);
-    const char* second_string = *((const char**) second_line);
+    const struct LineParams* first  = (const struct LineParams*) first_line;
+    const struct LineParams* second = (const struct LineParams*) second_line;
 
-    int first_ptr  = 0;
-    int second_ptr = 0;
+    int first_ptr  = first->len - 1;
+    int second_ptr = second->len - 1;
 
-    while (first_string[first_ptr])   { first_ptr++; }
-    while (second_string[second_ptr]) { second_ptr++; }
-
-    first_ptr--;
-    second_ptr--;
-
-    while (first_string[first_ptr] != '\0' && second_string[second_ptr] != '\0')
+    while ((first->string)[first_ptr] != '\0' && (second->string)[second_ptr] != '\0')
     {
-        if (isalpha(first_string[first_ptr]) && isalpha(second_string[second_ptr]))
+        if (isalpha((first->string)[first_ptr]) && isalpha((second->string)[second_ptr]))
         {
-            int second = toupper(second_string[second_ptr--]);
-            int first  = toupper(first_string[first_ptr--]);
-            if (second == first)
+            int second_symbol = toupper((second->string)[second_ptr--]);
+            int first_symbol  = toupper((first->string)[first_ptr--]);
+            if (second_symbol == first_symbol)
                 continue;
-            else if (first < second)
+            else if (first_symbol < second_symbol)
                 return LESS;
             else
                 return MORE;
         }
-        else if (!isalpha(first_string[first_ptr]))
+        else if (!isalpha((first->string)[first_ptr]))
         {
             first_ptr--;
         }
-        else if (!isalpha(second_string[second_ptr]))
+        else if (!isalpha((second->string)[second_ptr]))
         {
             second_ptr--;
         }

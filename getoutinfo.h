@@ -11,15 +11,21 @@
 static const char* INPUT_FILE  = "assets/onegin.txt";  /// open file name
 static const char* OUTPUT_FILE = "assets/output.txt";  /// open file name
 
+struct LineParams
+{
+    char* string;
+    size_t len;
+};
+
 /************************************************************//**
  * @brief Storage with info about buffer
  ************************************************************/
 struct Storage
 {
-    size_t line_amt;   /// amount of lines
-    off_t text_len;    /// amount of symbols in buffer
-    char* buf;         /// buffer
-    char** lines_ptrs; /// array with each line pointers
+    size_t line_amt;            /// amount of lines
+    off_t text_len;             /// amount of symbols in buffer
+    char* buf;                  /// buffer
+    struct LineParams* lines;
 };
 
 /************************************************************//**
@@ -39,33 +45,11 @@ off_t CountFileLength(const char* file_name);
  ************************************************************/
 char* CreateTextBuf(struct Storage* info);
 
-/************************************************************//**
- * @brief Allocates memory for array, that contains pointers on each new line start (in text buffer)
- *
- * @param[in] info structure with info about text buffer
- * @return char** pointer on array of line pointers
- * @return NULL if there was an error
- ************************************************************/
-char** CreateLinePtrsArray(struct Storage* info);
+struct LineParams* CreateLinePtrsArray(struct Storage* info);
 
-/************************************************************//**
- * @brief Prints text in right lines order
- *
- * @param[in] lines_pointers array of line pointers
- * @param[in] line_amount amount of lines
- * @param[in] header header
- * @return true if text printed succesfully
- * @return false if there was an error
- ************************************************************/
-bool PrintText(const char** lines_pointers, const size_t line_amount, const char* header);
+bool PrintText(const struct LineParams* lines, const size_t line_amount, const char* header);
 
-/************************************************************//**
- * @brief Prints one line from buffer
- *
- * @param[in] lines_pointers array of each line pointers
- * @param[in] line number of line
- ************************************************************/
-void PrintLine(const char** lines_pointers, const size_t line, FILE* fp);
+void PrintLine(const struct LineParams* lines, const size_t line, FILE* fp);
 
 /************************************************************//**
  * @brief Destructs text buffer and clears memory
@@ -77,14 +61,9 @@ inline void DestructTextBuf(char* buf)
     free(buf);
 }
 
-/************************************************************//**
- * @brief Destructs array of line pointers and clears memory
- *
- * @param[in] lines_pointers array of each line pointers
- ************************************************************/
-inline void DestructLinePtrsArray(char** lines_pointers)
+inline void DestructLinePtrsArray(struct LineParams* lines)
 {
-    free(lines_pointers);
+    free(lines);
 }
 
 /************************************************************//**
@@ -122,7 +101,7 @@ bool PrintBuf(const char* buf, const size_t text_len, const char* header);
  ************************************************************/
 inline void DestructTextStorage(struct Storage* info)
 {
-    DestructLinePtrsArray(info->lines_ptrs);
+    DestructLinePtrsArray(info->lines);
     DestructTextBuf(info->buf);
 }
 
