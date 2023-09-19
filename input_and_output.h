@@ -11,10 +11,14 @@
 static const char* INPUT_FILE  = "assets/onegin.txt";  /// open file name
 static const char* OUTPUT_FILE = "assets/output.txt";  /// open file name
 
+
+/************************************************************//**
+ * @brief Contains info about one line
+ ************************************************************/
 struct LineParams
 {
-    char* string;
-    size_t len;
+    char* string; /// line
+    size_t len;   /// length of string
 };
 
 /************************************************************//**
@@ -25,7 +29,7 @@ struct Storage
     size_t line_amt;            /// amount of lines
     off_t text_len;             /// amount of symbols in buffer
     char* buf;                  /// buffer
-    struct LineParams* lines;
+    struct LineParams* lines;   /// structure with info about line
 };
 
 /************************************************************//**
@@ -36,18 +40,43 @@ struct Storage
  *************************************************************/
 off_t GetFileLength(const char* file_name);
 
-int FindLinesStart(struct Storage* info, struct ErrorInfo* error);
+/************************************************************//**
+ * @brief Fills each line structure and adds it in array of line structures
+ *
+ * @param[in] info storage with info about buffer
+ * @param[out] error error structure
+ * @return int error code
+ *************************************************************/
+int FillLineStruct(struct Storage* info, struct ErrorInfo* error);
 
+/************************************************************//**
+ * @brief Prints all lines from buffer
+ *
+ * @param[in] stream stream, where lines are printing
+ * @param[in] lines array of lines structures
+ * @param[in] line_amount amount of lines
+ * @param[out] error error structure
+ * @return true if there was no error
+ * @return false if there was an error
+ *************************************************************/
 bool PrintAllLines(FILE* stream, const struct LineParams* lines,
                    const size_t line_amount, struct ErrorInfo* error);
 
+/************************************************************//**
+ * @brief Prints one line
+ *
+ * @param[in] stream stream, where line is printing
+ * @param[in] line structure with info about line, that function prints
+ * @param[out] error error structure
+ ************************************************************/
 void PrintOneLine(FILE* stream, const struct LineParams* line, struct ErrorInfo* error);
 
 /************************************************************//**
  * @brief Create a Text Storage object
  *
  * @param[in] info storage
- * @return int error
+ * @param[out] error error structure
+ * @return int error code
  ************************************************************/
 int CreateTextStorage(struct Storage* info, struct ErrorInfo* error);
 
@@ -60,10 +89,32 @@ int CreateTextStorage(struct Storage* info, struct ErrorInfo* error);
  ************************************************************/
 bool EraseFile(const char* FILE_NAME);
 
-void PrintBuf(FILE* stream, const char* buf, const size_t text_len);
+/************************************************************//**
+ * @brief Prints buffer
+ *
+ * @param[in] stream stream, where buffer is printing
+ * @param[in] buf buffer
+ * @param[in] buf_len length of buffer
+ ************************************************************/
+void PrintBuf(FILE* stream, const char* buf, const size_t buf_len);
 
+/************************************************************//**
+ * @brief Prints header
+ *
+ * @param[in] stream stream, where header is printing
+ * @param[in] header header
+ * @return true if header printed succesfully
+ * @return false if there was an error
+ ************************************************************/
 bool PrintHeader(FILE* stream, const char* header);
 
+/************************************************************//**
+ * @brief Prints separator
+ *
+ * @param[in] stream stream, where separator is printing
+ * @return true if separator printed succesfully
+ * @return false if there was an error
+ ************************************************************/
 bool PrintSeparator(FILE* stream);
 
 /************************************************************//**
@@ -77,6 +128,12 @@ inline void DestructTextStorage(struct Storage* info)
     free(info->buf);
 }
 
+/************************************************************//**
+ * @brief Prints error in stderr
+ *
+ * @param[in] error error structure
+ * @return int error code
+ ************************************************************/
 int PrintError(struct ErrorInfo* error);
 
 #endif

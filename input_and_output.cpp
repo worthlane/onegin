@@ -8,7 +8,7 @@
 #include "mylib/errors.h"
 #include "mylib/colorlib.h"
 
-int FindLinesStart(struct Storage* info, struct ErrorInfo* error)
+int FillLineStruct(struct Storage* info, struct ErrorInfo* error)
 {
     assert(info);
 
@@ -115,7 +115,7 @@ int CreateTextStorage(struct Storage* info, struct ErrorInfo* error)
 
     (info->line_amt)++;
 
-    FindLinesStart(info, error);
+    FillLineStruct(info, error);
     if (error->code != ERRORS::NONE)
         return (int) error->code;
 
@@ -145,11 +145,11 @@ bool EraseFile(const char* FILE_NAME)
 
 //-------------------------------------------------------------------------------------------
 
-void PrintBuf(FILE* stream, const char* buf, const size_t text_len)
+void PrintBuf(FILE* stream, const char* buf, const size_t buf_len)
 {
     assert(buf);
 
-    for (size_t i = 0; i < text_len; i++)
+    for (size_t i = 0; i < buf_len; i++)
     {
         int ch = buf[i];
 
