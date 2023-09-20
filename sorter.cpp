@@ -212,14 +212,14 @@ int ReverseCompare(const void* first_line, const void* second_line)
         }
     }
 
-    /*if ((first->string)[first_ptr] - (second->string)[second_ptr] < 0)
+    if ((first->string)[first_ptr] - (second->string)[second_ptr] < 0)
     {
         return LESS;
     }
     else if ((first->string)[first_ptr] - (second->string)[second_ptr] > 0)
     {
         return GREATER;
-    }*/
+    }
     return EQUAL;
 }
 

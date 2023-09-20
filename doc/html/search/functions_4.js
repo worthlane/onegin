@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['filllinestruct_0',['FillLineStruct',['../input__and__output_8h.html#a3e947f3c157c892bc6209e96a356719b',1,'input_and_output.cpp']]]
+  ['getfilelength_0',['GetFileLength',['../input__and__output_8h.html#a2ef60767302b88c4bc1b3be44087bec1',1,'input_and_output.cpp']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lineparams_0',['LineParams',['../struct_line_params.html',1,'']]]
+  ['lineinfo_0',['LineInfo',['../struct_line_info.html',1,'']]]
 ];

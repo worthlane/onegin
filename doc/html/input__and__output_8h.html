@@ -86,8 +86,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_params.html">LineParams</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">open file name  <a href="struct_line_params.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_info.html">LineInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains info about one line.  <a href="struct_line_info.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_storage.html">Storage</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_storage.html" title="Storage with info about buffer.">Storage</a> with info about buffer.  <a href="struct_storage.html#details">More...</a><br /></td></tr>
@@ -98,18 +98,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a2ef60767302b88c4bc1b3be44087bec1"><td class="memItemLeft" align="right" valign="top">off_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#a2ef60767302b88c4bc1b3be44087bec1">GetFileLength</a> (const char *file_name)</td></tr>
 <tr class="memdesc:a2ef60767302b88c4bc1b3be44087bec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">counts amount of symbols in input file  <br /></td></tr>
 <tr class="separator:a2ef60767302b88c4bc1b3be44087bec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e947f3c157c892bc6209e96a356719b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#a3e947f3c157c892bc6209e96a356719b">FillLineStruct</a> (struct <a class="el" href="struct_storage.html">Storage</a> *info, struct ErrorInfo *error)</td></tr>
-<tr class="memdesc:a3e947f3c157c892bc6209e96a356719b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills each line structure and adds it in array of line structures.  <br /></td></tr>
-<tr class="separator:a3e947f3c157c892bc6209e96a356719b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7d0611c04910b534c8a308b89df6bd4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#ab7d0611c04910b534c8a308b89df6bd4">PrintAllLines</a> (FILE *stream, const struct <a class="el" href="struct_line_params.html">LineParams</a> *lines, const size_t line_amount, struct ErrorInfo *error)</td></tr>
-<tr class="memdesc:ab7d0611c04910b534c8a308b89df6bd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all lines from buffer.  <br /></td></tr>
-<tr class="separator:ab7d0611c04910b534c8a308b89df6bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc956a52b36148fb365a7b1b86382b5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#acc956a52b36148fb365a7b1b86382b5b">PrintOneLine</a> (FILE *stream, const struct <a class="el" href="struct_line_params.html">LineParams</a> *line, struct ErrorInfo *error)</td></tr>
-<tr class="memdesc:acc956a52b36148fb365a7b1b86382b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints one line.  <br /></td></tr>
-<tr class="separator:acc956a52b36148fb365a7b1b86382b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a823203e75548532e9d44f1315cfa98ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#a823203e75548532e9d44f1315cfa98ef">CreateTextStorage</a> (struct <a class="el" href="struct_storage.html">Storage</a> *info, struct ErrorInfo *error)</td></tr>
-<tr class="memdesc:a823203e75548532e9d44f1315cfa98ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Text <a class="el" href="struct_storage.html" title="Storage with info about buffer.">Storage</a> object.  <br /></td></tr>
-<tr class="separator:a823203e75548532e9d44f1315cfa98ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad820f7a6dee7285af5f9cc810e76d525"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#ad820f7a6dee7285af5f9cc810e76d525">PrintAllLines</a> (FILE *stream, const struct <a class="el" href="struct_line_info.html">LineInfo</a> *lines, const size_t line_amount, struct ErrorInfo *error)</td></tr>
+<tr class="memdesc:ad820f7a6dee7285af5f9cc810e76d525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all lines from buffer.  <br /></td></tr>
+<tr class="separator:ad820f7a6dee7285af5f9cc810e76d525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56b50fd29709cf88d5a9e992ef00a1ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#a56b50fd29709cf88d5a9e992ef00a1ec">PrintOneLine</a> (FILE *stream, const struct <a class="el" href="struct_line_info.html">LineInfo</a> *line, struct ErrorInfo *error)</td></tr>
+<tr class="memdesc:a56b50fd29709cf88d5a9e992ef00a1ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints one line.  <br /></td></tr>
+<tr class="separator:a56b50fd29709cf88d5a9e992ef00a1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a297d6116b88f167ec406e6e9840b6efb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#a297d6116b88f167ec406e6e9840b6efb">CreateTextStorage</a> (struct <a class="el" href="struct_storage.html">Storage</a> *info, struct ErrorInfo *error, const char *FILE_NAME)</td></tr>
+<tr class="memdesc:a297d6116b88f167ec406e6e9840b6efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Text <a class="el" href="struct_storage.html" title="Storage with info about buffer.">Storage</a> object.  <br /></td></tr>
+<tr class="separator:a297d6116b88f167ec406e6e9840b6efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62aa93488405748cbf55e5bd70410f47"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#a62aa93488405748cbf55e5bd70410f47">EraseFile</a> (const char *FILE_NAME)</td></tr>
 <tr class="memdesc:a62aa93488405748cbf55e5bd70410f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears file from text in it.  <br /></td></tr>
 <tr class="separator:a62aa93488405748cbf55e5bd70410f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,15 +122,12 @@ Functions</h2></td></tr>
 <tr class="memitem:abd443599de55d945adab13e8c041b85a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#abd443599de55d945adab13e8c041b85a">DestructTextStorage</a> (struct <a class="el" href="struct_storage.html">Storage</a> *info)</td></tr>
 <tr class="memdesc:abd443599de55d945adab13e8c041b85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs a Text <a class="el" href="struct_storage.html" title="Storage with info about buffer.">Storage</a> object.  <br /></td></tr>
 <tr class="separator:abd443599de55d945adab13e8c041b85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a906235d64ec656c1a8efca04715cc70e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__and__output_8h.html#a906235d64ec656c1a8efca04715cc70e">PrintError</a> (struct ErrorInfo *error)</td></tr>
-<tr class="memdesc:a906235d64ec656c1a8efca04715cc70e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints error in stderr.  <br /></td></tr>
-<tr class="separator:a906235d64ec656c1a8efca04715cc70e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains info about functions, that get data and print it. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a823203e75548532e9d44f1315cfa98ef" name="a823203e75548532e9d44f1315cfa98ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a823203e75548532e9d44f1315cfa98ef">&#9670;&#160;</a></span>CreateTextStorage()</h2>
+<a id="a297d6116b88f167ec406e6e9840b6efb" name="a297d6116b88f167ec406e6e9840b6efb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a297d6116b88f167ec406e6e9840b6efb">&#9670;&#160;</a></span>CreateTextStorage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,7 +142,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">struct ErrorInfo *&#160;</td>
-          <td class="paramname"><em>error</em>&#160;</td>
+          <td class="paramname"><em>error</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>FILE_NAME</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -163,6 +163,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>storage </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">error</td><td>error structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">FILE_NAME</td><td>file name </td></tr>
   </table>
   </dd>
 </dl>
@@ -233,44 +234,6 @@ false if there was an error while clearing file </dd></dl>
 
 </div>
 </div>
-<a id="a3e947f3c157c892bc6209e96a356719b" name="a3e947f3c157c892bc6209e96a356719b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e947f3c157c892bc6209e96a356719b">&#9670;&#160;</a></span>FillLineStruct()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int FillLineStruct </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="struct_storage.html">Storage</a> *&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct ErrorInfo *&#160;</td>
-          <td class="paramname"><em>error</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Fills each line structure and adds it in array of line structures. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>storage with info about buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">error</td><td>error structure </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int error code </dd></dl>
-
-</div>
-</div>
 <a id="a2ef60767302b88c4bc1b3be44087bec1" name="a2ef60767302b88c4bc1b3be44087bec1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ef60767302b88c4bc1b3be44087bec1">&#9670;&#160;</a></span>GetFileLength()</h2>
 
@@ -298,8 +261,8 @@ false if there was an error while clearing file </dd></dl>
 
 </div>
 </div>
-<a id="ab7d0611c04910b534c8a308b89df6bd4" name="ab7d0611c04910b534c8a308b89df6bd4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7d0611c04910b534c8a308b89df6bd4">&#9670;&#160;</a></span>PrintAllLines()</h2>
+<a id="ad820f7a6dee7285af5f9cc810e76d525" name="ad820f7a6dee7285af5f9cc810e76d525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad820f7a6dee7285af5f9cc810e76d525">&#9670;&#160;</a></span>PrintAllLines()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -313,7 +276,7 @@ false if there was an error while clearing file </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="struct_line_params.html">LineParams</a> *&#160;</td>
+          <td class="paramtype">const struct <a class="el" href="struct_line_info.html">LineInfo</a> *&#160;</td>
           <td class="paramname"><em>lines</em>, </td>
         </tr>
         <tr>
@@ -396,33 +359,6 @@ false if there was an error </dd></dl>
 
 </div>
 </div>
-<a id="a906235d64ec656c1a8efca04715cc70e" name="a906235d64ec656c1a8efca04715cc70e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a906235d64ec656c1a8efca04715cc70e">&#9670;&#160;</a></span>PrintError()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int PrintError </td>
-          <td>(</td>
-          <td class="paramtype">struct ErrorInfo *&#160;</td>
-          <td class="paramname"><em>error</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints error in stderr. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>error structure </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int error code </dd></dl>
-
-</div>
-</div>
 <a id="a92e6611c4688b43a2cd0b7040d6b3ad4" name="a92e6611c4688b43a2cd0b7040d6b3ad4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a92e6611c4688b43a2cd0b7040d6b3ad4">&#9670;&#160;</a></span>PrintHeader()</h2>
 
@@ -463,8 +399,8 @@ false if there was an error </dd></dl>
 
 </div>
 </div>
-<a id="acc956a52b36148fb365a7b1b86382b5b" name="acc956a52b36148fb365a7b1b86382b5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc956a52b36148fb365a7b1b86382b5b">&#9670;&#160;</a></span>PrintOneLine()</h2>
+<a id="a56b50fd29709cf88d5a9e992ef00a1ec" name="a56b50fd29709cf88d5a9e992ef00a1ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56b50fd29709cf88d5a9e992ef00a1ec">&#9670;&#160;</a></span>PrintOneLine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -478,7 +414,7 @@ false if there was an error </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="struct_line_params.html">LineParams</a> *&#160;</td>
+          <td class="paramtype">const struct <a class="el" href="struct_line_info.html">LineInfo</a> *&#160;</td>
           <td class="paramname"><em>line</em>, </td>
         </tr>
         <tr>
