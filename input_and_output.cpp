@@ -98,7 +98,7 @@ void PrintOneLine(FILE* stream, const struct LineInfo* line, struct ErrorInfo* e
 {
     assert(line);
 
-    for (int i = 0; (line->string)[i] != '\0'; i++)
+    for (int i = 0; (line->string)[i] != '\0' && i < line->len; i++)
     {
         if (fputc((line->string)[i], stream) == EOF)
         {
@@ -183,11 +183,7 @@ bool EraseFile(const char* FILE_NAME)
     FILE* fp = fopen(FILE_NAME, "wb");
 
     if (fp == NULL)
-    {
-        perror("Failed to open file");
-        printf("File: \"%s\"\n", FILE_NAME);
         return false;
-    }
 
     fclose(fp);
 

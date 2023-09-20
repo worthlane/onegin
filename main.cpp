@@ -51,13 +51,18 @@ int main(const int argc, const char* argv[])
     if (error.code !=  ERRORS::NONE)
         return PrintError(&error);
 
-    EraseFile(OUTPUT_FILE_NAME);
+    if (!EraseFile(OUTPUT_FILE_NAME))
+        {
+            error.code = ERRORS::OPEN_FILE;
+            error.data = (char*) OUTPUT_FILE_NAME;
+            return PrintError(&error);
+        }
 
     FILE* outstream = fopen(OUTPUT_FILE_NAME, "w");
 
     if (!outstream)
     {
-        error.code  = ERRORS::OPEN_FILE;
+        error.code = ERRORS::OPEN_FILE;
         error.data = (char*) OUTPUT_FILE_NAME;
         return PrintError(&error);
     }
@@ -65,7 +70,7 @@ int main(const int argc, const char* argv[])
     // -------- ALPHABET SORTING FROM BEGINNING --------
 
     qsort(info.lines, info.line_amt - 1, sizeof(struct LineInfo), &StdCompare);
-    // increasing one to prevent crossing array borders
+    // decreasing one to prevent crossing array borders
 
     PrintHeader(outstream, "ALPHABET SORTING FROM BEGINNING");
 
@@ -83,7 +88,7 @@ int main(const int argc, const char* argv[])
 
     QSort(info.lines, sizeof(struct LineInfo), 0,
           info.line_amt - 1, &ReverseCompare);
-    // increasing one to prevent crossing array borders
+    // decreasing one to prevent crossing array borders
 
     PrintHeader(outstream, "ALPHABET SORTING FROM END");
 
@@ -101,7 +106,7 @@ int main(const int argc, const char* argv[])
 
     QSort(info.lines, sizeof(struct LineInfo), 0,
           info.line_amt - 1, &AdressCompare);
-    // increasing one to prevent crossing array borders
+    // decreasing one to prevent crossing array borders
 
     PrintHeader(outstream, "ORIGINAL VERSION");
 
