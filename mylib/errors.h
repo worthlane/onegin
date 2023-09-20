@@ -22,7 +22,15 @@ enum class ERRORS
 struct ErrorInfo
 {
     ERRORS code;
-    char* param;
+    char* data;
 };
+
+/************************************************************//**
+ * @brief Prints error in stderr
+ *
+ * @param[in] error error structure
+ * @return int error code
+ ************************************************************/
+int PrintError(struct ErrorInfo* error);
 
 #endif

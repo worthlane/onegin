@@ -8,14 +8,10 @@
 * \brief Contains info about functions, that get data and print it
 */
 
-static const char* INPUT_FILE  = "assets/onegin.txt";  /// open file name
-static const char* OUTPUT_FILE = "assets/output.txt";  /// open file name
-
-
 /************************************************************//**
  * @brief Contains info about one line
  ************************************************************/
-struct LineParams
+struct LineInfo
 {
     char* string; /// line
     size_t len;   /// length of string
@@ -29,7 +25,7 @@ struct Storage
     size_t line_amt;            /// amount of lines
     off_t text_len;             /// amount of symbols in buffer
     char* buf;                  /// buffer
-    struct LineParams* lines;   /// structure with info about line
+    struct LineInfo* lines;   /// structure with info about line
 };
 
 /************************************************************//**
@@ -50,7 +46,7 @@ off_t GetFileLength(const char* file_name);
  * @return true if there was no error
  * @return false if there was an error
  *************************************************************/
-bool PrintAllLines(FILE* stream, const struct LineParams* lines,
+bool PrintAllLines(FILE* stream, const struct LineInfo* lines,
                    const size_t line_amount, struct ErrorInfo* error);
 
 /************************************************************//**
@@ -60,16 +56,17 @@ bool PrintAllLines(FILE* stream, const struct LineParams* lines,
  * @param[in] line structure with info about line, that function prints
  * @param[out] error error structure
  ************************************************************/
-void PrintOneLine(FILE* stream, const struct LineParams* line, struct ErrorInfo* error);
+void PrintOneLine(FILE* stream, const struct LineInfo* line, struct ErrorInfo* error);
 
 /************************************************************//**
  * @brief Create a Text Storage object
  *
  * @param[in] info storage
  * @param[out] error error structure
+ * @param[in] FILE_NAME file name
  * @return int error code
  ************************************************************/
-int CreateTextStorage(struct Storage* info, struct ErrorInfo* error);
+int CreateTextStorage(struct Storage* info, struct ErrorInfo* error, const char* FILE_NAME);
 
 /************************************************************//**
  * @brief Clears file from text in it
@@ -118,13 +115,5 @@ inline void DestructTextStorage(struct Storage* info)
     free(info->lines);
     free(info->buf);
 }
-
-/************************************************************//**
- * @brief Prints error in stderr
- *
- * @param[in] error error structure
- * @return int error code
- ************************************************************/
-int PrintError(struct ErrorInfo* error);
 
 #endif

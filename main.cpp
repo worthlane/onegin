@@ -9,6 +9,9 @@
 
 // #define TEST
 
+static const char* INPUT_FILE  = "assets/onegin.txt";
+static const char* OUTPUT_FILE = "assets/output.txt";
+
 #ifdef TEST
 
 int main()
@@ -24,32 +27,51 @@ int main(const int argc, const char* argv[])
     struct Storage info = {};
     struct ErrorInfo error = {ERRORS::NONE};
 
-    CreateTextStorage(&info, &error);
+    const char* INPUT_FILE_NAME = "";
+    const char* OUTPUT_FILE_NAME = "";
+
+    if (argc == 1)
+    {
+        INPUT_FILE_NAME  = INPUT_FILE;
+        OUTPUT_FILE_NAME = OUTPUT_FILE;
+    }
+    else if (argc == 2)
+    {
+        INPUT_FILE_NAME  = argv[1];
+        OUTPUT_FILE_NAME = OUTPUT_FILE;
+    }
+    else
+    {
+        INPUT_FILE_NAME  = argv[1];
+        OUTPUT_FILE_NAME = argv[2];
+    }
+
+    CreateTextStorage(&info, &error, INPUT_FILE_NAME);
 
     if (error.code !=  ERRORS::NONE)
         return PrintError(&error);
 
-    EraseFile(OUTPUT_FILE);
+    EraseFile(OUTPUT_FILE_NAME);
 
-    FILE* outstream = fopen(OUTPUT_FILE, "w");
+    FILE* outstream = fopen(OUTPUT_FILE_NAME, "w");
 
     if (!outstream)
     {
         error.code  = ERRORS::OPEN_FILE;
-        error.param = (char*) OUTPUT_FILE;
+        error.data = (char*) OUTPUT_FILE_NAME;
         return PrintError(&error);
     }
 
     // -------- ALPHABET SORTING FROM BEGINNING --------
 
-    qsort(info.lines, info.line_amt - 1, sizeof(struct LineParams), &StdCompare);
+    qsort(info.lines, info.line_amt - 1, sizeof(struct LineInfo), &StdCompare);
     // increasing one to prevent crossing array borders
 
     PrintHeader(outstream, "ALPHABET SORTING FROM BEGINNING");
 
     if(!PrintAllLines(outstream, info.lines, info.line_amt, &error))
     {
-        error.param = (char*) OUTPUT_FILE;
+        error.data = (char*) OUTPUT_FILE_NAME;
         return PrintError(&error);
     }
 
@@ -59,7 +81,7 @@ int main(const int argc, const char* argv[])
 
     // ---------- ALPHABET SORTING FROM END ------------
 
-    QSort(info.lines, sizeof(struct LineParams), 0,
+    QSort(info.lines, sizeof(struct LineInfo), 0,
           info.line_amt - 1, &ReverseCompare);
     // increasing one to prevent crossing array borders
 
@@ -67,7 +89,7 @@ int main(const int argc, const char* argv[])
 
     if(!PrintAllLines(outstream, info.lines, info.line_amt, &error))
     {
-        error.param = (char*) OUTPUT_FILE;
+        error.data = (char*) OUTPUT_FILE_NAME;
         return PrintError(&error);
     }
 
@@ -77,7 +99,7 @@ int main(const int argc, const char* argv[])
 
     // ------------ PRINT ORIGINAL VERSION -------------
 
-    QSort(info.lines, sizeof(struct LineParams), 0,
+    QSort(info.lines, sizeof(struct LineInfo), 0,
           info.line_amt - 1, &AdressCompare);
     // increasing one to prevent crossing array borders
 
@@ -85,7 +107,7 @@ int main(const int argc, const char* argv[])
 
     if(!PrintAllLines(outstream, info.lines, info.line_amt, &error))
     {
-        error.param = (char*) OUTPUT_FILE;
+        error.data = (char*) OUTPUT_FILE_NAME;
         return PrintError(&error);
     }
 

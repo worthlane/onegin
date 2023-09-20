@@ -52,8 +52,8 @@ int StdCompare(const void* first_line, const void* second_line)
     assert(first_line);
     assert(second_line);
 
-    const struct LineParams* first  = (const struct LineParams*) first_line;
-    const struct LineParams* second = (const struct LineParams*) second_line;
+    const struct LineInfo* first  = (const struct LineInfo*) first_line;
+    const struct LineInfo* second = (const struct LineInfo*) second_line;
 
     int first_ptr  = 0;
     int second_ptr = 0;
@@ -183,8 +183,8 @@ int ReverseCompare(const void* first_line, const void* second_line)
     assert(first_line);
     assert(second_line);
 
-    const struct LineParams* first  = (const struct LineParams*) first_line;
-    const struct LineParams* second = (const struct LineParams*) second_line;
+    const struct LineInfo* first  = (const struct LineInfo*) first_line;
+    const struct LineInfo* second = (const struct LineInfo*) second_line;
 
     int first_ptr  = first->len - 1;
     int second_ptr = second->len - 1;
