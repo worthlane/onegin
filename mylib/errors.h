@@ -7,16 +7,16 @@
 
 enum class ERRORS
 {
-    NONE            = 0, /// not an error
+    NONE = 0,               /// not an error
 
-    OPEN_FILE       = 1, /// error while opening file
-    READ_FILE       = 2, /// error while reading file
+    OPEN_FILE,              /// error while opening file
+    READ_FILE,              /// error while reading file
 
-    ALLOCATE_MEMORY = 3, /// error with memory allocating
+    ALLOCATE_MEMORY,        /// error with memory allocating
 
-    PRINT_DATA      = 4, /// error while printing data
+    PRINT_DATA,             /// error while printing data
 
-    UNKNOWN         = 5
+    UNKNOWN                 /// unknown error
 };
 
 struct ErrorInfo

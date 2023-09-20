@@ -11,6 +11,9 @@
 
 static const size_t buf_size = 64;
 
+static size_t Partition(const void* data, const size_t size, const size_t left, const size_t right,
+                 comparator_t* Compare);
+
 void Swap(void* ptr1, void* ptr2, size_t size)
 {
     assert(ptr1);
@@ -120,10 +123,12 @@ void QSort(const void* info, const size_t size, const size_t left, const size_t 
 
 //-------------------------------------------------------------------------------------------
 
-size_t Partition(const void* info, const size_t size, const size_t left, const size_t right,
+static size_t Partition(const void* info, const size_t size, const size_t left, const size_t right,
                  comparator_t* Compare)
 {
     assert(info);
+
+
     assert(left <= right);
 
     char* data = (char*) info;

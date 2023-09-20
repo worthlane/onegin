@@ -8,16 +8,58 @@
 #include "mylib/errors.h"
 #include "mylib/colorlib.h"
 
-int FillLineStruct(struct Storage* info, struct ErrorInfo* error)
+static int FillLineStruct(struct Storage* info, struct ErrorInfo* error);
+static int AllocateBuf(FILE* fp, char** buf, const off_t buf_len, struct ErrorInfo* error);
+static int AllocateLines(struct LineParams** lines, char* buf, const off_t text_len,
+                         size_t* line_amt, struct ErrorInfo* error);
+
+static int AllocateLines(struct LineParams** lines, char* buf, const off_t text_len,
+                         size_t* line_amt, struct ErrorInfo* error)
 {
-    assert(info);
+    *lines = (struct LineParams* ) calloc(*line_amt, sizeof(struct LineParams));
 
-    info->lines = (struct LineParams* ) calloc(info->line_amt, sizeof(struct LineParams));
-
-    if (info->lines ==  NULL)
+    if (*lines ==  NULL)
         return (int) (error->code = ERRORS::ALLOCATE_MEMORY);
 
-    info->lines[0].string = (char* ) info->buf;
+    (*lines)[0].string = buf;
+
+    for (int i = 0; i < text_len; i++)
+    {
+        if (buf[i] == '\n')
+        {
+            buf[i] = '\0';
+            (*line_amt)++;
+        }
+    }
+
+    (*line_amt)++;
+
+    return (int) ERRORS::NONE;
+}
+
+//-------------------------------------------------------------------------------------------
+
+static int AllocateBuf(FILE* fp, char** buf, const off_t buf_len, struct ErrorInfo* error)
+{
+    // Add 1 for NUL-terminator --v
+    *buf = (char* ) calloc(buf_len + 1, sizeof(char));
+
+    if (!*buf)
+        return (int) (error->code = ERRORS::ALLOCATE_MEMORY);
+
+    off_t symbols_read = fread(*buf, sizeof(char), buf_len, fp);
+
+    if (symbols_read != buf_len)
+        return (int) (error->code = ERRORS::READ_FILE);
+
+    return (int) ERRORS::NONE;
+}
+
+//-------------------------------------------------------------------------------------------
+
+static int FillLineStruct(struct Storage* info, struct ErrorInfo* error)
+{
+    assert(info);
 
     size_t line = 1;
 
@@ -95,29 +137,32 @@ int CreateTextStorage(struct Storage* info, struct ErrorInfo* error)
         return (int) (error->code = ERRORS::OPEN_FILE);
     }
 
+    // off_t buf_size = GetFileLength(INPUT_FILE);
+
     info->text_len = GetFileLength(INPUT_FILE);
 
-    // Add 1 for NUL-terminator ---------------------v
-    if (!(info->buf = (char* ) calloc(info->text_len + 1, sizeof(char))))
-        return (int) (error->code = ERRORS::ALLOCATE_MEMORY);
+    //===================== CREATING BUFFER
 
-    if (fread(info->buf, sizeof(char), info->text_len, fp) != info->text_len)
-        return (int) (error->code = ERRORS::READ_FILE);
+    AllocateBuf(fp, &info->buf, info->text_len, error);
 
-    for (int i = 0; i < info->text_len; i++)
-    {
-        if (info->buf[i] == '\n')
-        {
-            info->buf[i] = '\0';
-            (info->line_amt)++;
-        }
-    }
-
-    (info->line_amt)++;
-
-    FillLineStruct(info, error);
     if (error->code != ERRORS::NONE)
         return (int) error->code;
+
+    //===================== END OF CREATING BUFFER
+
+    //===================== CREATING LINES STRUCTURES
+
+    AllocateLines(&info->lines, info->buf, info->text_len, &info->line_amt, error);
+
+    if (error->code != ERRORS::NONE)
+        return (int) error->code;
+
+    FillLineStruct(info, error);
+
+    if (error->code != ERRORS::NONE)
+        return (int) error->code;
+
+    //===================== END OF CREATING LINES STRUCTURES
 
     if (info->lines == NULL)
         return (int) (error->code = ERRORS::ALLOCATE_MEMORY);
@@ -191,27 +236,27 @@ int PrintError(struct ErrorInfo* error)
             return (int) error->code;
 
         case (ERRORS::OPEN_FILE):
-            PrintRedText(stderr, "OPEN FILE ERROR\n"
+            PRINT_RED_TEXT(stderr, "OPEN FILE ERROR\n"
                                  "FAILED TO OPEN FILE \"%s\"\n", error->param);
             return (int) error->code;
 
         case (ERRORS::READ_FILE):
-            PrintRedText(stderr, "READ FILE ERROR\n"
+            PRINT_RED_TEXT(stderr, "READ FILE ERROR\n"
                                  "FAILED TO READ INFO FROM FILE \"%s\"\n", error->param);
             return (int) error->code;
 
         case (ERRORS::ALLOCATE_MEMORY):
-            PrintRedText(stderr, "MEMORY ALLOCATE ERROR\n"
+            PRINT_RED_TEXT(stderr, "MEMORY ALLOCATE ERROR\n"
                                  "FAILED TO ALLOCATE MEMORY IN \"%s\"\n", error->param);
             return (int) error->code;
 
         case (ERRORS::PRINT_DATA):
-            PrintRedText(stderr, "DATA PRINT ERROR\n"
+            PRINT_RED_TEXT(stderr, "DATA PRINT ERROR\n"
                                  "FAILED TO PRINT DATA IN \"%s\"\n", error->param);
             return (int) error->code;
 
         default:
-            PrintRedText(stderr, "UNKNOWN ERROR\n", "");
+            PRINT_RED_TEXT(stderr, "UNKNOWN ERROR\n", "");
             return (int) ERRORS::UNKNOWN;
     }
 }

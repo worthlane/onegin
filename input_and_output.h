@@ -41,15 +41,6 @@ struct Storage
 off_t GetFileLength(const char* file_name);
 
 /************************************************************//**
- * @brief Fills each line structure and adds it in array of line structures
- *
- * @param[in] info storage with info about buffer
- * @param[out] error error structure
- * @return int error code
- *************************************************************/
-int FillLineStruct(struct Storage* info, struct ErrorInfo* error);
-
-/************************************************************//**
  * @brief Prints all lines from buffer
  *
  * @param[in] stream stream, where lines are printing

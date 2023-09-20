@@ -15,20 +15,20 @@
 #define WHITE   "\x1b[37;1m"
 #define STD     "\x1b[0m"
 
-#define PrintBlackText(fp, string, ...)   (fprintf(fp, BLACK   string STD, __VA_ARGS__))
+#define PRINT_BLACK_TEXT(fp, string, ...)   (fprintf(fp, BLACK   string STD, __VA_ARGS__))
 
-#define PrintRedText(fp, string, ...)     (fprintf(fp, RED     string STD, __VA_ARGS__))
+#define PRINT_RED_TEXT(fp, string, ...)     (fprintf(fp, RED     string STD, __VA_ARGS__))
 
-#define PrintGreenText(fp, string, ...)   (fprintf(fp, GREEN   string STD, __VA_ARGS__))
+#define PRINT_GREEN_TEXT(fp, string, ...)   (fprintf(fp, GREEN   string STD, __VA_ARGS__))
 
-#define PrintYellowText(fp, string, ...)  (fprintf(fp, YELLOW  string STD, __VA_ARGS__))
+#define PRINT_YELLOW_TEXT(fp, string, ...)  (fprintf(fp, YELLOW  string STD, __VA_ARGS__))
 
-#define PrintBlueText(fp, string, ...)    (fprintf(fp, BLUE    string STD, __VA_ARGS__))
+#define PRINT_BLUE_TEXT(fp, string, ...)    (fprintf(fp, BLUE    string STD, __VA_ARGS__))
 
-#define PrintMagentaText(fp, string, ...) (fprintf(fp, MAGENTA string STD, __VA_ARGS__))
+#define PRINT_MAGENTA_TEXT(fp, string, ...) (fprintf(fp, MAGENTA string STD, __VA_ARGS__))
 
-#define PrintCyanText(fp, string, ...)    (fprintf(fp, CYAN    string STD, __VA_ARGS__))
+#define PRINT_CYAN_TEXT(fp, string, ...)    (fprintf(fp, CYAN    string STD, __VA_ARGS__))
 
-#define PrintWhiteText(fp, string, ...)   (fprintf(fp, WHITE   string STD, __VA_ARGS__))
+#define PRINT_WHITE_TEXT(fp, string, ...)   (fprintf(fp, WHITE   string STD, __VA_ARGS__))
 
 #endif

@@ -58,7 +58,7 @@ int main(const int argc, const char* argv[])
     PrintSeparator(outstream);
 
     // ---------- ALPHABET SORTING FROM END ------------
-    
+
     QSort(info.lines, sizeof(struct LineParams), 0,
           info.line_amt - 1, &ReverseCompare);
     // increasing one to prevent crossing array borders

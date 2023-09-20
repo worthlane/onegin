@@ -57,20 +57,6 @@ void QSort(const void* data, const size_t size, const size_t left, const size_t 
            comparator_t* Compare);
 
 /************************************************************//**
- * @brief Partition in quick sorting
- *
- * @param[in] data sorting data
- * @param[in] size size of each element in data
- * @param[in] left left border
- * @param[in] right right border
- * @param[in] Compare comparator function
- ***********************************************************/
-
-size_t Partition(const void* data, const size_t size, const size_t left, const size_t right,
-                 comparator_t* Compare);
-
-
-/************************************************************//**
  * @brief Enums result of comparing strings
  ************************************************************/
 enum Comparison

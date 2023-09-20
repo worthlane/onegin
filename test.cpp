@@ -19,16 +19,16 @@ void TestQSort()
     {
         if (origin[i] != data[i])
         {
-            PrintRedText(stderr, "TEST ERROR IN TESTQSORT\n", "");
-            PrintRedText(stderr, "EXPECTED\n", "");
+            PRINT_RED_TEXT(stderr, "TEST ERROR IN TESTQSORT\n", "");
+            PRINT_RED_TEXT(stderr, "EXPECTED\n", "");
             PrintArray(origin, TEST_LEN);
-            PrintRedText(stderr, "FUNCTION\n", "");
+            PRINT_RED_TEXT(stderr, "FUNCTION\n", "");
             PrintArray(data, TEST_LEN);
             return;
         }
     }
 
-    PrintGreenText(stderr, "TEST RAN SUCCESSFULLY", "");
+    PRINT_GREEN_TEXT(stderr, "TEST RAN SUCCESSFULLY", "");
 }
 
 //-------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ void PrintArray(const int data[], const size_t size)
 {
     for (size_t i = 0; i < size; i++)
     {
-        PrintMagentaText(stdout, "%d, ", data[i]);
+        PRINT_MAGENTA_TEXT(stdout, "%d, ", data[i]);
     }
     putchar('\n');
 }
