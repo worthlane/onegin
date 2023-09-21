@@ -1,7 +1,11 @@
 # onegin
 
 ## Input
-Program reads info in buffer from file with name "onegin.txt"
+Program reads info in buffer from input file, to output file.
+```
+./build/bin/onegin [input file] [output file]
+```
+Default input file: "onegin.txt". Default output file: "output.txt".
 
 ## What this program does?
 It can sort input data in three different types
