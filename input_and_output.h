@@ -25,7 +25,7 @@ struct Storage
     size_t line_amt;            /// amount of lines
     off_t text_len;             /// amount of symbols in buffer
     char* buf;                  /// buffer
-    struct LineInfo* lines;   /// structure with info about line
+    struct LineInfo* lines;     /// structure with info about line
 };
 
 /************************************************************//**

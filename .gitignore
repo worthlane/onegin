@@ -3,3 +3,4 @@ a.out.dSYM
 .vscode
 build
 .DS_Store
+README.md

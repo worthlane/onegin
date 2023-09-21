@@ -8,7 +8,8 @@
 #include "mylib/errors.h"
 #include "mylib/colorlib.h"
 
-static int FillLineStruct(struct Storage* info, struct ErrorInfo* error);
+static int FillLineStruct(struct ErrorInfo* error,
+                          size_t line_amt, off_t text_len, char* buf, struct LineInfo* lines);
 static int AllocateBuf(FILE* fp, char** buf, const off_t buf_len, struct ErrorInfo* error);
 static int AllocateLines(struct LineInfo** lines, char* buf, const off_t text_len,
                          size_t* line_amt, struct ErrorInfo* error);
@@ -16,13 +17,6 @@ static int AllocateLines(struct LineInfo** lines, char* buf, const off_t text_le
 static int AllocateLines(struct LineInfo** lines, char* buf, const off_t text_len,
                          size_t* line_amt, struct ErrorInfo* error)
 {
-    *lines = (struct LineInfo* ) calloc(*line_amt, sizeof(struct LineInfo));
-
-    if (*lines ==  NULL)
-        return (int) (error->code = ERRORS::ALLOCATE_MEMORY);
-
-    (*lines)[0].string = buf;
-
     for (int i = 0; i < text_len; i++)
     {
         if (buf[i] == '\n')
@@ -33,6 +27,13 @@ static int AllocateLines(struct LineInfo** lines, char* buf, const off_t text_le
     }
 
     (*line_amt)++;
+
+    *lines = (struct LineInfo* ) calloc(*line_amt, sizeof(struct LineInfo));
+
+    if (*lines ==  NULL)
+        return (int) (error->code = ERRORS::ALLOCATE_MEMORY);
+
+    (*lines)[0].string = buf;
 
     return (int) ERRORS::NONE;
 }
@@ -57,18 +58,21 @@ static int AllocateBuf(FILE* fp, char** buf, const off_t buf_len, struct ErrorIn
 
 //-------------------------------------------------------------------------------------------
 
-static int FillLineStruct(struct Storage* info, struct ErrorInfo* error)
+static int FillLineStruct(struct ErrorInfo* error,
+                          size_t line_amt, off_t text_len, char* buf, struct LineInfo* lines)
 {
-    assert(info);
+    assert(error);
+    assert(lines);
+    assert(buf);
 
     size_t line = 1;
 
-    for (off_t i = 0; i < info->text_len; i++)
+    for (off_t i = 0; i < text_len; i++)
     {
-        if (info->buf[i] == '\0')
+        if (buf[i] == '\0')
         {
-            info->lines[line - 1].len  = info->buf + i - info->lines[line - 1].string;
-            info->lines[line++].string = info->buf + i + 1;
+            lines[line - 1].len  = buf + i - lines[line - 1].string;
+            lines[line++].string = buf + i + 1;
         }
     }
 
@@ -138,10 +142,13 @@ int CreateTextStorage(struct Storage* info, struct ErrorInfo* error, const char*
     }
 
     off_t buf_size = GetFileLength(FILE_NAME);
+    char* buffer = nullptr;
+    size_t line_amt = 0;
+    struct LineInfo* lines = {};
 
     //===================== CREATING BUFFER
 
-    AllocateBuf(fp, &info->buf, buf_size, error);
+    AllocateBuf(fp, &buffer, buf_size, error);
 
     if (error->code != ERRORS::NONE)
         return (int) error->code;
@@ -150,7 +157,7 @@ int CreateTextStorage(struct Storage* info, struct ErrorInfo* error, const char*
 
     //===================== CREATING LINES STRUCTURES
 
-    AllocateLines(&info->lines, info->buf, buf_size, &info->line_amt, error);
+    AllocateLines(&lines, buffer, buf_size, &line_amt, error);
 
     if (error->code != ERRORS::NONE)
     {
@@ -158,14 +165,17 @@ int CreateTextStorage(struct Storage* info, struct ErrorInfo* error, const char*
         return (int) error->code;
     }
 
-    info->text_len = buf_size;
-
-    FillLineStruct(info, error);
+    FillLineStruct(error, line_amt, buf_size, buffer, lines);
 
     if (error->code != ERRORS::NONE)
         return (int) error->code;
 
     //===================== END OF CREATING LINES STRUCTURES
+
+    info->lines    = lines;
+    info->buf      = buffer;
+    info->line_amt = line_amt;
+    info->text_len = buf_size;
 
     if (info->lines == NULL)
     {
